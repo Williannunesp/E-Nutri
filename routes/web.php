@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-<<<<<<< Updated upstream
-    return view('layout');
-=======
-    return view('Login.login');
->>>>>>> Stashed changes
+
+    return view('login.login');
+
 });
+
+Route::get('/index', [IndexController::class, 'index'])->name('index');

@@ -14,7 +14,7 @@
 }
 .form-signin .form-control
 {
-    position: relative;
+    position: unset;
     font-size: 16px;
     height: auto;
     padding: 10px;

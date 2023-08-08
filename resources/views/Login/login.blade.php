@@ -16,11 +16,13 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-4 col-md-offset-4">
-                <h1 class="text-center login-title">E-Nutri - ACESSO INTERNO</h1>
+                <h1 class="text-center login-title"></h1>
                 <div class="account-wall">
-                    <img class="profile-img" src="https://www.guiacomercialparademinas.com.br/assets/uploads/imagens/04612-lava-jato-talento-automotivo.jpg"
+                    <div class="text-center">
+                    <img class="" alt="Responsive image" src="{{asset('img/Logo-Oficial.png')}}"
                         alt="">
-                    <form class="form-signin" action="" method="POST">
+                    </div>
+                    <form class="form-signin" action="{{route('index')}}" method="GET">
                         @csrf
                     <input type="text" class="form-control" name="name" placeholder="Nome do Usuário" required autofocus>
                     <input type="password" class="form-control" name="password" placeholder="Senha" required>

@@ -83,8 +83,10 @@
                     <div class="card-body">
                         <h5 class="card-title">@yield('cabecalho')</h5>
                         @yield('conteudo')
-
-                        <img  src="img/EmBreve.png"
+                        <div class="text-center">
+                            <img src="img/EmBreve.png" class="rounded" >
+                          </div>
+                        
 
 
 
