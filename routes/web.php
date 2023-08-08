@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+<<<<<<< Updated upstream
     return view('layout');
+=======
+    return view('Login.login');
+>>>>>>> Stashed changes
 });
