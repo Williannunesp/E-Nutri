@@ -56,7 +56,7 @@
                 <ul class="navbar-nav ml-md-auto d-md-flex">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" title="Sair do Sistema"><i class="fa fa-power-off"></i> Sair</a>
+                        <a class="nav-link" href="{{route('signout')}}" title="Sair do Sistema"><i class="fa fa-power-off"></i> Sair</a>
                     </li>
                 </ul>
             </div>
@@ -83,9 +83,7 @@
                     <div class="card-body">
                         <h5 class="card-title">@yield('cabecalho')</h5>
                         @yield('conteudo')
-                        <div class="text-center">
-                            <img src="img/EmBreve.png" class="rounded" >
-                          </div>
+
                         
 
 

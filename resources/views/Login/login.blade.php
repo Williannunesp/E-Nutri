@@ -10,6 +10,7 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
+
     <title>Acesso Restrito</title>
 </head>
 <body>
@@ -22,10 +23,10 @@
                     <img class="" alt="Responsive image" src="{{asset('img/Logo-Oficial.png')}}"
                         alt="">
                     </div>
-                    <form class="form-signin" action="{{route('index')}}" method="GET">
+                    <form class="form-signin" action="{{route('signin')}}" method="POST">
                         @csrf
                     <input type="text" class="form-control" name="name" placeholder="Nome do Usuário" required autofocus>
-                    <input type="password" class="form-control" name="password" placeholder="Senha" required>
+                    <input type="password" class="form-control" name="password" placeholder="Senha" required minlength="8">
                     <button class="btn btn-lg btn-primary btn-block" type="submit">
                         Entrar</button>
 

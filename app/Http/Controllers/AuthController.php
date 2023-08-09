@@ -22,7 +22,7 @@ class AuthController extends Controller
      */
     public function create()
     {
-        //
+        return view("Login.Register");
     }
 
     /**
@@ -31,7 +31,7 @@ class AuthController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "name" => 'required|unique:users',
+            "name" => 'required',
             "password" => 'required|min:8'
         ]);
 
@@ -42,7 +42,7 @@ class AuthController extends Controller
             "password" => Hash::make($inf['password'])
         ]);
 
-        return redirect("home");
+        return redirect("index");
     }
 
     public function home()
@@ -66,7 +66,8 @@ class AuthController extends Controller
         if(Auth::attempt($credentials)){
             return redirect('index');
         }else{
-            return redirect();
+           
+            return redirect(route('login'));
         }
     }
 
@@ -105,7 +106,7 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        return redirect();
+        return redirect(route('login'));
     }
     
     /**
