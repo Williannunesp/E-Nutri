@@ -15,13 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [AuthController::class, 'index'])->name('login');
 
-    return view('login.login');
-
-})->name('login');
-
-Route::get('/index', [IndexController::class, 'index'])->name('index');
+Route::get('/home', [AuthController::class, 'home'])->name('home');
 
 Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
 Route::get('/registeruser', [AuthController::class, 'create'])->name('telacaduser');

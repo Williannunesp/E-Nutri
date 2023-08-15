@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -33,10 +33,10 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav animate side-nav">
+                <ul class="navbar-nav animate side-nav"> @yield('navbar')
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"> <i class="fas fa-question-circle"></i><span class="ttip">Em Breve...</span></a>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" href=""> <i class="fas fa-question-circle"></i><span class="ttip">Em Breve...</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"> <i class="fa fa-question-circle"></i><span class="ttip">Em Breve...</span></a>
@@ -51,7 +51,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#"> <i class="fa fa-question-circle"></i><span
                                 class="ttip">Em Breve...</span></a>
-                    </li>
+                    </li> --}}
                 </ul>
                 <ul class="navbar-nav ml-md-auto d-md-flex">
 
@@ -81,7 +81,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">@yield('cabecalho')</h5>
+                        <h5 class="card-title" style="margin-left: 200px">@yield('cabecalho')</h5>
                         @yield('conteudo')
 
                         

@@ -14,7 +14,7 @@ class AuthController extends Controller
      */
     public function index()
     {
-        //
+        return view('login.login',);
     }
 
     /**
@@ -22,7 +22,11 @@ class AuthController extends Controller
      */
     public function create()
     {
-        return view("Login.Register");
+        if (Auth::check()){
+            return view('Login.Register');
+        } else{
+            return redirect('/')->with('erro1', 'Efetue o login para continuar!');
+        }
     }
 
     /**
@@ -42,15 +46,15 @@ class AuthController extends Controller
             "password" => Hash::make($inf['password'])
         ]);
 
-        return redirect("index");
+        return redirect("showuser")->with('sucesso', 'Usuário cadastrado com sucesso!');
     }
 
     public function home()
     {
         if (Auth::check()){
-            return view();
+            return view('home.home');
         } else{
-            return redirect();
+            return redirect('/')->with('erro1', 'Efetue o login para continuar!');
         }
 
     }
@@ -64,10 +68,12 @@ class AuthController extends Controller
 
         $credentials = $request->only('name', 'password');
         if(Auth::attempt($credentials)){
-            return redirect('index');
+            
+            return redirect('home');
         }else{
-           
-            return redirect(route('login'));
+            
+            return redirect('/')->with('erro', 'Usuário ou senha inválido!');
+            
         }
     }
 
@@ -76,9 +82,14 @@ class AuthController extends Controller
      */
     public function show()
     {
-        $users = User::query()->orderBy('id')->get();
+        if (Auth::check()){
+            $users = User::query()->orderBy('id')->get();
 
-        return view('login.show', compact('users'));
+            return view('login.show', compact('users'));
+        } else{
+            return redirect('/')->with('erro1', 'Efetue o login para continuar!');
+        }
+
     }
 
     /**
@@ -86,8 +97,15 @@ class AuthController extends Controller
      */
     public function edit ($id)
     {
-        $user = User::find($id);
-        return view();
+
+        if (Auth::check()){
+            $user = User::find($id);
+            return view();
+        } else{
+            
+            return redirect('/')->with('erro1', 'Efetue o login para continuar!');
+        }
+
     }
 
     /**
@@ -104,9 +122,16 @@ class AuthController extends Controller
 
     public function SignOut()
     {
-        Auth::logout();
+        
+        if (Auth::check()){
+            Auth::logout();
+            return redirect('/');
+        } else{
+            return redirect('/');
+        }
+        
 
-        return redirect(route('login'));
+       
     }
     
     /**
