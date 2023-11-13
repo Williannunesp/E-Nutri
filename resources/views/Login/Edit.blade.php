@@ -1,14 +1,24 @@
 @extends('layout')
 
 @section('titulo')
-E-Nutri
+    E-Nutri Professor
 @endsection
 
 @section('cabecalho')
     E-Nutri
 @endsection
+
 @section('tipopagina')
-Cadastro de Usuários
+Editar Usuário
+@endsection
+@section('menuusuario')
+        <li><a class="dropdown-item" href="#">{{$user}}</a></li>
+
+        <li><hr class="dropdown-divider" /></li>
+        <li><a class="dropdown-item" href="{{route('showuser')}}">Gerenciar Usuários</a></li>
+        <li><hr class="dropdown-divider" /></li>
+        <li><a class="dropdown-item" href="{{route('signout')}}">Sair</a></li>
+
 @endsection
 
 @section('conteudo')
@@ -22,25 +32,29 @@ Cadastro de Usuários
 
 
     @endsection
-              <form action="{{route('saveuser')}}" method="POST">
+              <form action="{{route('edituser', ['id' => $users->id])}}" method="POST">
                 @csrf
                     <div class="container">
                         <div class="row">
+
+
+
                             <div class="col col-5">
                                 <label for="nome">Nome Completo: <b style="color: red">*</b></label>
-                                <input type="text" class="form-control mb-2" autocomplete="name" name="namec" id="nome"  required>
+                                <input type="text" class="form-control mb-2" name="namec" id="nome" value="{{$users->namecomp}}"  required>
                             </div>
                             <div class="col col-5">
                                 <label for="nome">RM: <b style="color: red">*</b></label>
-                                <input type="number" class="form-control mb-2" name="rm" id="nome"   required>
+                                <input type="number" class="form-control mb-2" name="rm" id="nome" value="{{$users->rm}}" required>
                             </div>
                             <div class="col col-5">
                                 <label for="nome">Telefone: </label>
-                                <input type=" number" autocomplete="tel"  class="form-control mb-2" name="tel" id="nome" >
+                                <input type="number" class="form-control mb-2" name="tel" value="{{$users->telefone}}" id="nome" >
                             </div>
+
                             <div class="col col-5">
                                 <label for="nome">Nome de Usuario: <b style="color: red">*</b></label>
-                                <input type="text" autocomplete="login" class="form-control mb-2" name="nameu" id="nome"  required>
+                                <input type="text" class="form-control mb-2" name="nameu" id="nome"  value="{{$users->name}}" required>
                             </div>
                         </div>
                         <div class="row">
@@ -56,9 +70,15 @@ Cadastro de Usuários
                                  <select name="status" class="form-select " aria-label="Default select example">
                                  </label>
 
-                                       {{-- <option value="" ></option> --}}
+
                                        @foreach ($status as $statu)
-                                       <option value="{{$statu->id}}" >{{$statu->name}}</option>
+                                       :
+                                       @php
+                                       $seEh = $users->status_id == $statu->id;
+                                       $selecao = $seEh ? "selected = 'selected'" : '';
+
+                                       @endphp
+                                       <option value="{{$statu->id}}" {{$selecao}}>{{$statu->name}}</option>
                                        @endforeach
 
 
@@ -72,18 +92,22 @@ Cadastro de Usuários
                                      <select name="acesso" class="form-select " aria-label="Default select example">
                                      </label>
 
-
+                                         
                                            @foreach ($acesso as $acessos)
-                                           <option value="{{$acessos->id}}" >{{$acessos->name}}</option>
+                                           :
+                                           @php
+                                           $seEh = $users->acesso_id == $acessos->id;
+                                           $selecao = $seEh ? "selected = 'selected'" : '';
+
+                                           @endphp
+                                           <option value="{{$acessos->id}}" {{$selecao}}>{{$acessos->name}}</option>
                                            @endforeach
 
 
                                        </select>
 
-                                 </div>
-
                             <div class="col-2" style="margin-left: 70px"><br><br><br>
-                                <button class="btn btn-success btn-lg float-right"  stype="submit">Cadastrar</button>
+                                <button class="btn btn-primary btn-lg float-right"  stype="submit">Alterar</button>
                             </div>
                             <div class="col-1"></div>
                 </form>

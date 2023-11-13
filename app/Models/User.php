@@ -20,6 +20,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'password',
+        'status_id',
+        'acesso_id',
+        'namecomp',
+        'rm',
+        'telefone',
     ];
 
     /**
@@ -27,10 +32,10 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    // protected $hidden = [
+    //     'password',
+    //     'remember_token',
+    // ];
 
     /**
      * The attributes that should be cast.
@@ -42,3 +47,4 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 }
+

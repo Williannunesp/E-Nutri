@@ -30,7 +30,7 @@
 
                     <form class="form-signin" action="{{route('signin')}}" method="POST">
                         @csrf
-                    <input type="text" class="form-control" name="name" placeholder="Nome do Usuário" required autofocus>
+                    <input type="text" class="form-control" name="name" placeholder="Nome do Usuário" required autofocus >
                     <input type="password" class="form-control" name="password" placeholder="Senha" required minlength="8">
                     <button class="btn btn-lg btn-primary btn-block" type="submit">
                         Entrar</button>
@@ -40,4 +40,5 @@
         </div>
     </div>
 </body>
+{{-- style="text-transform: uppercase" - mostrar texto maiusculo ou minusculo --}}
 </html>

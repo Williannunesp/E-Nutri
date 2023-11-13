@@ -2,140 +2,292 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Acesso;
+use App\Models\Agendamentopc;
+use App\Models\Statu;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+
 class AuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+     public function tlogin()
+    {
+
+        if (Auth::check()){//verifica se possui usuário logado.
+
+                $user = Auth::user()->name;//busca nome usuario.
+                $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
+                $status = User::where("name", $user)->get("status_id");//busca id do status do usuário.
+                $agenda = Agendamentopc::query()->orderBy('status_id')->get();//busca todos agendamentos.
+
+            if($status[0]->status_id == 1){//verifica se é ativa ou inativo.
+
+                if($acesso[0]->acesso_id == 1){//verifica se é aluno ou professor.
+
+                        return view('homeprof.home', ['agenda'=>$agenda, 'user'=>$user]);//mostra tela inicial de professores.
+
+                }else{
+
+                        return view('homealu.home', ['agenda'=>$agenda,  'user'=>$user]);//mostra tela inicial de alunos.
+
+                }
+
+            }else{
+
+                Auth::logout();// caso seja inativo desloga usuario.
+                return redirect('login')->with('erro2', 'Usuário não autorizado!' );//mostra tela login com erro.
+
+            }
+
+        }else{
+
+            return view('login.login');//mostra tela login sem erros.
+
+        }
+    }
+
+
     public function index()
     {
-        return view('login.login',);
+
+        if (Auth::check()){//verifica se possui usuário logado.
+
+            return redirect('home');//chama o endereço home.
+
+        }else{
+
+            return redirect('login');//chama o endereço login.
+
+        }
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        if (Auth::check()){
-            return view('Login.Register');
-        } else{
-            return redirect('/')->with('erro1', 'Efetue o login para continuar!');
+
+        if (Auth::check()){//verifica se possui usuário logado.
+
+            $user = Auth::user()->name;
+            $acesso = User::where("name", $user)->get("acesso_id");
+
+            if($acesso[0]->acesso_id == 1){//verifica se é professor para acessar cadastro de usuário.
+
+                $status = Statu::all();
+                $acesso = Acesso::all();
+
+                return view('Login.Register', ['status'=> $status, 'acesso'=> $acesso, 'user'=>$user]);//tela de cadastro de usuário.
+
+            }else{
+
+                return redirect('/')->with('erro1', 'O usuário nao possui acesso!');//tela login com erro.
+
+            }
+        }else{
+
+            return redirect('home');//chama o endereço home.
+
         }
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $request->validate([
-            "name" => 'required',
-            "password" => 'required|min:8'
+
+        User::create([//salva na tabela user do banco.
+
+            "name" => $request->nameu,
+            "password" => Hash::make($request->password),
+            "status_id" => $request->status,
+            "acesso_id" => $request->acesso,
+            "namecomp" => $request->namec,
+            "rm" => $request->rm,
+            "telefone" => $request->tel
         ]);
 
-        $inf = $request->all();
+        return redirect("user/show")->with('sucesso', 'Usuário cadastrado com sucesso!');//tela inicial com mensagem de sucesso.
 
-        $user = User::create([
-            "name" => $inf['name'],
-            "password" => Hash::make($inf['password'])
-        ]);
-
-        return redirect("showuser")->with('sucesso', 'Usuário cadastrado com sucesso!');
     }
 
-    public function home()
+    public function home(Request $request)
     {
-        if (Auth::check()){
-            return view('home.home');
-        } else{
-            return redirect('/')->with('erro1', 'Efetue o login para continuar!');
+
+        if(Auth::check()){//verifica se possui usuário logado.
+
+            $user = Auth::user()->name;//busca nome usuário.
+            $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
+            $agenda = Agendamentopc::query()->orderBy('status_id')->get();//busca todos agendamentos.
+
+            if($acesso[0]->acesso_id == 1){//verifica se é aluno ou professor.
+
+                return view('homeprof.home', ['agenda'=>$agenda, 'user'=>$user]);//mostra tela inicial de professores.
+
+            }else{
+
+                return view('homealu.home', ['agenda'=>$agenda, 'user'=>$user]);//mostra tela inicial de alunos.
+
+            }
+        }else{
+
+            return redirect('login')->with('erro1', 'Efetue o login para continuar!');//tela login com erro.
+
         }
+
 
     }
 
     public function SignIn(Request $request)
     {
-        $request->validate([
+
+
+        $request->validate([//verifica se os campos estão preenchidos.
+
             'name' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+
         ]);
 
-        $credentials = $request->only('name', 'password');
-        if(Auth::attempt($credentials)){
-            
-            return redirect('home');
+        $credentials = $request->only('name', 'password');//busca o que foi digitado no campo.
+        $status = User::where("name", $request->name)->get("status_id");//busca id do status do usuário.
+
+        if(Auth::attempt($credentials)){//compara o usuário e senha digitado com cadastrado no banco.
+
+             if($status[0]->status_id == 1){//verifica se é ativo.
+
+                return redirect('home');//chama endereço home.
+
+            }elseif($status[0]->status_id == 2){//verifica se é inativo.
+
+                Auth::logout();
+                return redirect('login')->with('erro2', 'Usuário não autorizado!' );//tela login com erros.
+
+            }
+
         }else{
-            
-            return redirect('/')->with('erro', 'Usuário ou senha inválido!');
-            
+
+            return redirect('login')->with('erro', 'Usuário ou senha inválido!' );//tela login com erros.
+
+
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show()
     {
-        if (Auth::check()){
-            $users = User::query()->orderBy('id')->get();
+        if (Auth::check()){//verifica se possui usuário logado.
 
-            return view('login.show', compact('users'));
-        } else{
-            return redirect('/')->with('erro1', 'Efetue o login para continuar!');
+                $user = Auth::user()->name;//busca nome usuário.
+                $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
+
+            if($acesso[0]->acesso_id == 1){//verifica se é aluno ou professor.
+
+                $users = User::query()->orderBy('id')->get();//busca todos usuários cadastrados no banco.
+
+
+                return view('login.show', compact('users', 'user'));//tela mostrar login com busca no banco.
+
+            }else{
+
+                return redirect('login')->with('erro1', 'Efetue o login para continuar!');//tela login com erro.
+            }
+        }else{
+
+            return redirect('home');//chama endereço home.
+
         }
-
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit ($id)
     {
 
-        if (Auth::check()){
-            $user = User::find($id);
-            return view();
-        } else{
-            
-            return redirect('/')->with('erro1', 'Efetue o login para continuar!');
-        }
+            if (Auth::check()){//verifica se possui usuário logado.
 
+                $user = Auth::user()->name;//busca nome usuário.
+                $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
+
+            if($acesso[0]->acesso_id == 1){//verifica se é aluno ou professor.
+
+                $users = User::find($id);//busca o id do usuário para edição
+                $status = Statu::all();//busca todos status
+                $acesso = Acesso::all();//busca todos acessos.
+
+
+
+                return view('Login.edit', ['users'=>$users, 'status'=>$status, 'acesso'=>$acesso, 'user'=>$user]);//tela edição com informações
+
+            } else{
+
+                return redirect('login')->with('erro1', 'Efetue o login para continuar!');//tela de login com erro.
+
+            }
+        }else{
+
+            return redirect('home');//chama endereço home.
+
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        $user = User::find($id);//busca o id do usuário para atualização.
 
-        $user->update([
-            "password" => Hash::make($request->password)
+
+        $user->update([//atualiza dados usuário.
+            "name" => $request->namec,
+            "password" => Hash::make($request->password),
+            "status_id" => $request->status,
+            "acesso_id" => $request->acesso,
+            "name" => $request->nameu,
+            "rm" => $request->rm,
+            "telefone" => $request->tel
+
         ]);
+
+        return redirect("user/show")->with('sucesso1', 'Usuário alterado com sucesso!');//tela mostrar usuarios e mensagem de sucesso.
     }
 
     public function SignOut()
     {
-        
-        if (Auth::check()){
-            Auth::logout();
-            return redirect('/');
-        } else{
-            return redirect('/');
-        }
-        
 
-       
+        if (Auth::check()){//verifica se possui usuário logado.
+
+            Auth::logout();//desçpga o usuário.
+            return redirect('login');//tela login sem erros.
+
+        }else{
+
+            return redirect('login');//tela login sem erros.
+
+        }
+
+
+
     }
-    
-    /**
-     * Remove the specified resource from storage.
-     */
+
+    public function destroy($id){
+
+        $user = Auth::user()->name;//busca nome usuário.
+        $acesso = User::where("name", $user)->get("acesso_id");
+
+    if($acesso[0]->acesso_id == 1){
+        User::destroy($id);
+
+        return redirect("user/show")->with('erro', 'Usuário excluido com sucesso!');
+    }else{
+        return redirect('home');
+    }
+    }
+
+    // public function LogAdm (){
+
+    //     $status = Statu::all();
+    //     $acesso = Acesso::all();
+
+    //     return view('Login.Register', ['status'=> $status, 'acesso'=> $acesso]);
+
+    // }
+
 
 }
