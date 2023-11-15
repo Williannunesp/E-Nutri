@@ -100,9 +100,6 @@ class PacienteController extends Controller
 
             $user = Auth::user()->name;//busca nome usuário.
             $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
-
-        if($acesso[0]->acesso_id == 1){//verifica se é aluno ou professor.
-
             $dadospaci = Paciente::find($id);//busca todos usuários cadastrados no banco.
             $sexo = Sexo::all();
             $ec = Estadocivil::all();
