@@ -6,6 +6,7 @@ use App\Models\Agendamentopc;
 use App\Models\Estadocivil;
 use App\Models\Paciente;
 use App\Models\Sexo;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,15 +27,24 @@ class PacienteController extends Controller
     {
         if(Auth::check()){//verifica se possui usuário logado.
 
+            $user = Auth::user()->name;
+            $acesso = User::where("name", $user)->get("acesso_id");
             $sexo = Sexo::all();
             $ec = Estadocivil::all();
             $pacienteid = Agendamentopc::where("id", $id)->get("paciente_id");
             $dadospaci = Paciente::find($pacienteid[0]->paciente_id);
 
 
+            if($acesso[0]->acesso_id == 1){
+                return view('pacienteprof.create', ['sexo'=>$sexo, 'ec'=>$ec, 'dadospaci'=>$dadospaci, 'user'=>$user]);
+            }else{
+                return view('pacientealu.create', ['sexo'=>$sexo, 'ec'=>$ec, 'dadospaci'=>$dadospaci, 'user'=>$user]);
+
+            }
 
 
-            return view('paciente.create', ['sexo'=>$sexo, 'ec'=>$ec, 'dadospaci'=>$dadospaci]);
+
+
 
 
         }else{
@@ -56,9 +66,29 @@ class PacienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        if (Auth::check()){//verifica se possui usuário logado.
+
+            $user = Auth::user()->name;//busca nome usuário.
+            $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
+            $pacientes = Paciente::query()->orderBy('name')->get();//busca todos usuários cadastrados no banco.
+
+        if($acesso[0]->acesso_id == 1){//verifica se é aluno ou professor.
+
+
+
+            return view('pacienteprof.gere', compact('pacientes', 'user'));//tela mostrar login com busca no banco.
+
+        }else{
+
+            return view('pacientealu.gere', compact('pacientes', 'user'));//tela mostrar login com busca no banco.        }
+        }
+        }else{
+
+        return redirect('home');//chama endereço home.
+        }
+
     }
 
     /**
@@ -66,7 +96,28 @@ class PacienteController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        if (Auth::check()){//verifica se possui usuário logado.
+
+            $user = Auth::user()->name;//busca nome usuário.
+            $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
+
+        if($acesso[0]->acesso_id == 1){//verifica se é aluno ou professor.
+
+            $dadospaci = Paciente::find($id);//busca todos usuários cadastrados no banco.
+            $sexo = Sexo::all();
+            $ec = Estadocivil::all();
+
+
+            return view('pacienteprof.edit', compact('dadospaci', 'user', 'sexo', 'ec'));//tela mostrar login com busca no banco.
+
+        }else{
+
+            return view('pacientealu.edit', compact('dadospaci', 'user'));//tela mostrar login com busca no banco.        }
+        }
+        }else{
+
+        return redirect('home');//chama endereço home.
+        }
     }
 
     /**
@@ -104,6 +155,15 @@ class PacienteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = Auth::user()->name;//busca nome usuário.
+        $acesso = User::where("name", $user)->get("acesso_id");
+
+    if($acesso[0]->acesso_id == 1){
+        Paciente::destroy($id);
+
+        return redirect("/paciente/gerenciar")->with('erro', 'Paciente excluido com sucesso!');
+    }else{
+        return redirect('home');
+    }
     }
 }

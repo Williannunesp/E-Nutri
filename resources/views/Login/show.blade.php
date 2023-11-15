@@ -10,7 +10,7 @@ E-Nutri
 @section('tipopagina')
 Gerenciar Usuários
 @endsection
-@section('menuusuario')
+@section('menuusuario') 
         <li><a class="dropdown-item" href="#">{{$user}}</a></li>
 
         <li><hr class="dropdown-divider" /></li>

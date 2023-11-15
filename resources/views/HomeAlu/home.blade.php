@@ -21,27 +21,51 @@
 
 
 
-        @section('navbar')
-        <a class="nav-link" href="{{route('buscaagenda')}}">
-            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-           Gerenciar Agendamentos
-        </a>
-        @endsection
+@section('navbar')
+
+<div class="sb-sidenav-menu-heading">Primeira Consulta</div>
+<a class="nav-link" href="{{route('buscaagenda')}}">
+    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+   Agendamentos
+</a>
+
+<div class="sb-sidenav-menu-heading">Retorno</div>
+
+<a class="nav-link" href="{{route('gerenciarretorno')}}">
+    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+     Agendamentos
+</a>
+<div class="sb-sidenav-menu-heading">Paciente</div>
+<a class="nav-link" href="{{route('gerenciarpaciente')}}">
+    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+   Gerenciar Pacientes
+</a>
+
+@endsection
         <div class="row">
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-primary text-white mb-4">
-                    <div class="card-body">INICIAR PRIMEIRA CONSULTA</div>
+                    <div class="card-body">PRIMEIRA CONSULTA</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{route('listaagenda')}}">Detalhes</a>
+                        <a class="small text-white stretched-link" href="{{route('listaagenda')}}">Iniciar Consulta</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
-                <div class="card bg-warning text-white mb-4">
-                    <div class="card-body">INICIAR RETORNO</div>
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">RETORNO</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">Detalhes</a>
+                        <a class="small text-white stretched-link" href="#">Iniciar Consulta</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-danger text-white mb-4">
+                    <div class="card-body">PACIENTE</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">Prontuário</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>

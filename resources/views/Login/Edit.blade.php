@@ -35,34 +35,42 @@ Editar Usuário
               <form action="{{route('edituser', ['id' => $users->id])}}" method="POST">
                 @csrf
                     <div class="container">
-                        <div class="row">
+                        <div class="container">
+                            <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        <input class="form-control" id="namec" autocomplete="namec" name="namec" value="{{$users->namecomp}}" type="text" required placeholder="Enter your first name" />
+                                        <label for="namec">Nome Completo: <b style="color: red">*</b></label>
+                                    </div>
+                                 </div>
+                                    <div class="col-md-2">
+                                        <div class="form-floating mb-3 mb-md-0">
+                                            <input class="form-control" id="rm" autocomplete="rm" name="rm" type="number" value="{{$users->rm}}" required placeholder="Enter your first name" />
+                                            <label for="rm">RM: <b style="color: red">*</b></label>
+                                        </div>
+                                    </div>
+                                   <div class="col-md-3">
+                                        <div class="form-floating mb-3 mb-md-0">
+                                            <input class="form-control" id="tel" name="tel" autocomplete="tel" type="number" value="{{$users->telefone}}" placeholder="Enter your first name" />
+                                            <label for="tel">Telefone: </label>
+                                        </div>
+                                 </div>
+                                </div>
+                            <div class="row mb-4">
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-3 mb-md-0">
+                                            <input class="form-control" id="nameu" autocomplete="nameu" name="nameu" type="text" value="{{$users->name}}" required placeholder="Enter your first name" />
+                                            <label for="nameu">Nome do Usuário: <b style="color: red">*</b></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-3 mb-md-0">
+                                            <input class="form-control" id="password" autocomplete="password" name="password" required minlength="8" type="password" required placeholder="Enter your first name" />
+                                            <label for="password">Senha: <b style="color: red">*</b></label>
+                                        </div>
+                                    </div>
+                                </div>
 
-
-
-                            <div class="col col-5">
-                                <label for="nome">Nome Completo: <b style="color: red">*</b></label>
-                                <input type="text" class="form-control mb-2" name="namec" id="nome" value="{{$users->namecomp}}"  required>
-                            </div>
-                            <div class="col col-5">
-                                <label for="nome">RM: <b style="color: red">*</b></label>
-                                <input type="number" class="form-control mb-2" name="rm" id="nome" value="{{$users->rm}}" required>
-                            </div>
-                            <div class="col col-5">
-                                <label for="nome">Telefone: </label>
-                                <input type="number" class="form-control mb-2" name="tel" value="{{$users->telefone}}" id="nome" >
-                            </div>
-
-                            <div class="col col-5">
-                                <label for="nome">Nome de Usuario: <b style="color: red">*</b></label>
-                                <input type="text" class="form-control mb-2" name="nameu" id="nome"  value="{{$users->name}}" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col col-5">
-                                <label for="password">Senha <b style="color: red">*</b></label>
-                                <input type="password" class="form-control mb-2" name="password" id="senha" required minlength="8">
-                            </div>
-                        </div>
 
                         <div class="row">
                             <div class="col col-4 mt-4">
@@ -92,7 +100,7 @@ Editar Usuário
                                      <select name="acesso" class="form-select " aria-label="Default select example">
                                      </label>
 
-                                         
+
                                            @foreach ($acesso as $acessos)
                                            :
                                            @php
@@ -104,12 +112,12 @@ Editar Usuário
                                            @endforeach
 
 
-                                       </select>
-
-                            <div class="col-2" style="margin-left: 70px"><br><br><br>
-                                <button class="btn btn-primary btn-lg float-right"  stype="submit">Alterar</button>
+                                       </select> <br>
+                                       <div class="row">
+                            <div class="col-2">
+                                <button class="btn btn-primary btn-lg float-right"  stype="submit">Salvar</button>
                             </div>
-                            <div class="col-1"></div>
+                        </div>
                 </form>
                         </div>
                     </div>

@@ -24,7 +24,7 @@
 
     @section('navbar')
     <div class="sb-sidenav-menu-heading">Voltar</div>
-    <a class="nav-link" href="{{route('listaagenda')}}">
+    <a class="nav-link" href="{{route('listaretorno')}}">
         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
       Voltar
     </a>
@@ -60,8 +60,9 @@
             </div>
                 <div class="row">
                     <div class="col-2" style="margin-top: 20px"><br><br><br>
-                        <a href="{{route('telacadpaciente', ['id' => $agenda->paciente->id])}}"><button class="btn btn-primary btn-lg float-right"  stype="submit">Iniciar Consulta</button></a>
-                    </div>
+                        @foreach ($dadospaci as $dadospacis)
+                        <a href="{{route('editpaciretorno', ['id' => $dadospacis->id])}}"><button class="btn btn-primary btn-lg float-right"  stype="submit">Iniciar Consulta</button></a>
+                    </div>@endforeach
                 </div>
         </div>
 

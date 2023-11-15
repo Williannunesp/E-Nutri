@@ -235,7 +235,7 @@ class AuthController extends Controller
 
 
         $user->update([//atualiza dados usuário.
-            "name" => $request->namec,
+            "namecomp" => $request->namec,
             "password" => Hash::make($request->password),
             "status_id" => $request->status,
             "acesso_id" => $request->acesso,

@@ -5,6 +5,7 @@ use App\Http\Controllers\AgendamentopcController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\RetornoController;
 use App\Models\Paciente;
 use Illuminate\Support\Facades\Route;
 
@@ -35,12 +36,29 @@ Route::post('/user/edit/{id}', [AuthController::class, 'update'])->name('edituse
 Route::post('/user/destoy/{id}', [AuthController::class, 'destroy'])->name('exluiruser');
 
 Route::get('/agendapc/new', [AgendamentopcController::class, 'create'])->name('telacadagenda');
-Route::get('/agendapc/list', [AgendamentopcController::class, 'list'])->name('buscaagenda');
+Route::get('/agendapc/list', [AgendamentopcController::class, 'gerenciar'])->name('buscaagenda');
 Route::get('/agendapc/busc', [AgendamentopcController::class, 'selecionar'])->name('listaagenda');
+Route::get('/agendapc/atendidos', [AgendamentopcController::class, 'atendidos'])->name('buscaatendidos');
 Route::get('/agendapc/{id}', [AgendamentopcController::class, 'show'])->name('showagenda');
 Route::post('/agendapc/store', [AgendamentopcController::class, 'store'])->name('saveagenda');
 Route::get('/agendapc/edit/{id}', [AgendamentopcController::class, 'edit'])->name('telaeditagenda');
 Route::post('/agendapc/edit/{id}', [AgendamentopcController::class, 'update'])->name('updateagenda');
+Route::post('/agendapc/destoy/{id}', [AgendamentopcController::class, 'destroy'])->name('exluiragenda');
 
 Route::get('/paciente/novo/{id}', [PacienteController::class, 'create'])->name('telacadpaciente');
 Route::post('/paciente/up/{id}', [PacienteController::class, 'update'])->name('editpaciente');
+Route::get('/paciente/gerenciar', [PacienteController::class, 'show'])->name('gerenciarpaciente');
+Route::post('/paciente/destoy/{id}', [PacienteController::class, 'destroy'])->name('exluirpaciente');
+Route::get('/paciente/edit/{id}', [PacienteController::class, 'edit'])->name('telaeditpaciente');
+
+Route::get('/retorno/gerenciar', [RetornoController::class, 'gerenciar'])->name('gerenciarretorno');
+Route::get('/retorno/busc', [RetornoController::class, 'selecionar'])->name('listaretorno');
+Route::get('/retorno/atendidos', [RetornoController::class, 'atendidos'])->name('atendidoretorno');
+Route::get('/retorno/selecionar', [RetornoController::class, 'paciente'])->name('selecionarretorno');
+Route::get('/retorno/novo/{id}', [RetornoController::class, 'create'])->name('cadretorno');
+Route::post('/retorno/novo', [RetornoController::class, 'store'])->name('saveretorno');
+Route::get('/retorno/edit/{id}', [RetornoController::class, 'edit'])->name('editretorno');
+Route::post('/retorno/edit/{id}', [RetornoController::class, 'update'])->name('updateretorno');
+Route::post('/retorno/destoy/{id}', [RetornoController::class, 'destroy'])->name('exluirretorno');
+Route::get('/retorno/show/{id}', [RetornoController::class, 'show'])->name('showretorno');
+Route::get('/retorno/editpaci/{id}', [RetornoController::class, 'editpaci'])->name('editpaciretorno');

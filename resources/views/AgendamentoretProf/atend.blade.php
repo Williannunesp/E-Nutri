@@ -8,7 +8,7 @@ E-Nutri Professor
 E-Nutri
 @endsection
 @section('tipopagina')
-Selecione um agendamento para inciar a consulta
+Lista de Pacientes Atendidos
 @endsection
 @section('menuusuario')
         <li><a class="dropdown-item" href="#">{{$user}}</a></li>
@@ -18,13 +18,12 @@ Selecione um agendamento para inciar a consulta
         <li><hr class="dropdown-divider" /></li>
         <li><a class="dropdown-item" href="{{route('signout')}}">Sair</a></li>
 
-
 @endsection
 @section('navbar')
 
 
 <div class="sb-sidenav-menu-heading">Voltar</div>
-<a class="nav-link" href="{{route('home')}}">
+<a class="nav-link" href="{{route('gerenciarretorno')}}">
     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
    Voltar
 </a>
@@ -47,26 +46,29 @@ Selecione um agendamento para inciar a consulta
                 <th>Status</th>
 
 
-
             </tr>
         </thead>
 
         <tbody>
-            @foreach ($agendamentopc as $agendamentopcs)
+            @foreach ($agendamentoret as $agendamentorets)
+
+
 
 
 
 
             <tr>
 
-                <td><a style="text-decoration: none; color: black" href="{{route('showagenda', ['id' => $agendamentopcs->id])}}">{{ $agendamentopcs->name }}</a></td>
-                <td><a style="text-decoration: none; color: black" href="{{route('showagenda', ['id' => $agendamentopcs->id])}}">{{ $agendamentopcs->telefone }}</a></td>
-                <td><a style="text-decoration: none; color: black" href="{{route('showagenda', ['id' => $agendamentopcs->id])}}">{{ \Carbon\Carbon::parse($agendamentopcs->data)->format('d/m/Y')}}</a></td>
-                <td><a style="text-decoration: none; color: black" href="{{route('showagenda', ['id' => $agendamentopcs->id])}}">{{ $agendamentopcs->hora }}</a></td>
-                <td><a style="text-decoration: none; color: black" href="{{route('showagenda', ['id' => $agendamentopcs->id])}}">{{ $agendamentopcs->status->name }}</a></td>
+                <td>{{ $agendamentorets->name }}</td>
+                <td>{{ $agendamentorets->telefone }}</td>
+                <td>{{ \Carbon\Carbon::parse($agendamentorets->data)->format('d/m/Y')}}</td>
+                <td>{{ $agendamentorets->hora }}</td>
+                <td>{{ $agendamentorets->status->name }}</td>
+
 
             </tr>
             @endforeach
+
 
 
         </tbody>

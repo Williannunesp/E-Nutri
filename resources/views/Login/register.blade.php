@@ -7,6 +7,15 @@ E-Nutri
 @section('cabecalho')
     E-Nutri
 @endsection
+@section('menuusuario')
+        <li><a class="dropdown-item" href="#">{{$user}}</a></li>
+
+        <li><hr class="dropdown-divider" /></li>
+        <li><a class="dropdown-item" href="{{route('showuser')}}">Gerenciar Usuários</a></li>
+        <li><hr class="dropdown-divider" /></li>
+        <li><a class="dropdown-item" href="{{route('signout')}}">Sair</a></li>
+
+@endsection
 @section('tipopagina')
 Cadastro de Usuários
 @endsection
@@ -25,30 +34,42 @@ Cadastro de Usuários
               <form action="{{route('saveuser')}}" method="POST">
                 @csrf
                     <div class="container">
-                        <div class="row">
-                            <div class="col col-5">
-                                <label for="nome">Nome Completo: <b style="color: red">*</b></label>
-                                <input type="text" class="form-control mb-2" autocomplete="name" name="namec" id="nome"  required>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <div class="form-floating mb-3 mb-md-0">
+                                    <input class="form-control" id="namec" autocomplete="namec" name="namec" type="text" required placeholder="Enter your first name" />
+                                    <label for="namec">Nome Completo: <b style="color: red">*</b></label>
+                                </div>
+                             </div>
+                                <div class="col-md-2">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        <input class="form-control" id="rm" autocomplete="rm" name="rm" type="number" required placeholder="Enter your first name" />
+                                        <label for="rm">RM: <b style="color: red">*</b></label>
+                                    </div>
+                                </div>
+                               <div class="col-md-3">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        <input class="form-control" id="tel" name="tel" autocomplete="tel" type="number" placeholder="Enter your first name" />
+                                        <label for="tel">Telefone: </label>
+                                    </div>
+                             </div>
                             </div>
-                            <div class="col col-5">
-                                <label for="nome">RM: <b style="color: red">*</b></label>
-                                <input type="number" class="form-control mb-2" name="rm" id="nome"   required>
+                        <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        <input class="form-control" id="nameu" autocomplete="nameu" name="nameu" type="text" required placeholder="Enter your first name" />
+                                        <label for="nameu">Nome do Usuário: <b style="color: red">*</b></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        <input class="form-control" id="password" autocomplete="password" name="password" required minlength="8" type="password" required placeholder="Enter your first name" />
+                                        <label for="password">Senha: <b style="color: red">*</b></label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col col-5">
-                                <label for="nome">Telefone: </label>
-                                <input type=" number" autocomplete="tel"  class="form-control mb-2" name="tel" id="nome" >
-                            </div>
-                            <div class="col col-5">
-                                <label for="nome">Nome de Usuario: <b style="color: red">*</b></label>
-                                <input type="text" autocomplete="login" class="form-control mb-2" name="nameu" id="nome"  required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col col-5">
-                                <label for="password">Senha <b style="color: red">*</b></label>
-                                <input type="password" class="form-control mb-2" name="password" id="senha" required minlength="8">
-                            </div>
-                        </div>
+
+
 
                         <div class="row">
                             <div class="col col-4 mt-4">
@@ -81,12 +102,12 @@ Cadastro de Usuários
                                        </select>
 
                                  </div>
-
+                                 <div class="row mb-4">
                             <div class="col-2" style="margin-left: 70px"><br><br><br>
                                 <button class="btn btn-success btn-lg float-right"  stype="submit">Cadastrar</button>
                             </div>
-                            <div class="col-1"></div>
-                </form>
+                            </div>
+                            </form>
                         </div>
                     </div>
 

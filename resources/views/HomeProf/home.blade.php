@@ -27,23 +27,21 @@ Inicio
         @section('navbar')
 
         <div class="sb-sidenav-menu-heading">Primeira Consulta</div>
-        <a class="nav-link" href="{{route('telacadagenda')}}">
-            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-           Agendar Consulta
-        </a>
         <a class="nav-link" href="{{route('buscaagenda')}}">
             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-           Gerenciar Agendamentos
+           Agendamentos
         </a>
 
         <div class="sb-sidenav-menu-heading">Retorno</div>
-        <a class="nav-link" href="indexProfessor.html">
+
+        <a class="nav-link" href="{{route('gerenciarretorno')}}">
             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-            Agendar Consulta
+             Agendamentos
         </a>
-        <a class="nav-link" href="indexProfessor.html">
+        <div class="sb-sidenav-menu-heading">Paciente</div>
+        <a class="nav-link" href="{{route('gerenciarpaciente')}}">
             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-            Gerenciar Agendamentos
+           Gerenciar Pacientes
         </a>
 
         @endsection
@@ -63,7 +61,7 @@ Inicio
                 <div class="card bg-success text-white mb-4">
                     <div class="card-body">RETORNO</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">Iniciar Consulta</a>
+                        <a class="small text-white stretched-link" href="{{route('listaretorno')}}">Iniciar Consulta</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
@@ -78,6 +76,7 @@ Inicio
                 </div>
             </div>
         </div>
+
 
 
 

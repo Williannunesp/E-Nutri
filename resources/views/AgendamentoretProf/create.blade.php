@@ -8,7 +8,7 @@
     E-Nutri
 @endsection
 @section('tipopagina')
-Agendar Paciente para Primeira Consulta
+Agendar Paciente para Retorno
 @endsection
 @section('menuusuario')
         <li><a class="dropdown-item" href="#">{{$user}}</a></li>
@@ -20,7 +20,7 @@ Agendar Paciente para Primeira Consulta
 
 @endsection
 @section('tipopagina')
-Agendar Primeira Consulta
+Agendar Retorno
 @endsection
 @include('Menssagem/flash')
 
@@ -28,26 +28,27 @@ Agendar Primeira Consulta
 
     @section('navbar')
     <div class="sb-sidenav-menu-heading">Voltar</div>
-    <a class="nav-link" href="{{route('buscaagenda')}}">
+    <a class="nav-link" href="{{route('selecionarretorno')}}">
         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
       Voltar
     </a>
 
 
+
     @endsection
-              <form action="{{route('saveagenda')}}" method="POST">
+              <form action="{{route('saveretorno')}}" method="POST">
                 @csrf
                     <div class="container">
                         <div class="row mb-4">
                             <div class="col-md-4">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" id="name" autocomplete="name" name="name" type="text" required placeholder="Enter your first name" />
+                                    <input class="form-control" id="name" autocomplete="name" name="name" type="text" value="{{$pacientes->name}}" required placeholder="Enter your first name" />
                                     <label for="name">Nome do Paciente: <b style="color: red">*</b></label>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" id="tel" name="tel" autocomplete="tel" type="number" required placeholder="Enter your first name" />
+                                    <input class="form-control" id="tel" name="tel" autocomplete="tel" type="number" value="{{$pacientes->celular}}" required placeholder="Enter your first name" />
                                     <label for="tel">Telefone: <b style="color: red">*</b></label>
                                 </div>
                             </div>

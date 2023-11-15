@@ -52,18 +52,18 @@ Selecione um agendamento para inciar a consulta
         </thead>
 
         <tbody>
-            @foreach ($agendamentopc as $agendamentopcs)
+            @foreach ($agendamentoret as $agendamentorets)
 
 
 
 
             <tr>
 
-                <td><a style="text-decoration: none; color: black" href="{{route('showagenda', ['id' => $agendamentopcs->id])}}">{{ $agendamentopcs->name }}</a></td>
-                <td><a style="text-decoration: none; color: black" href="{{route('showagenda', ['id' => $agendamentopcs->id])}}">{{ $agendamentopcs->telefone }}</a></td>
-                <td><a style="text-decoration: none; color: black" href="{{route('showagenda', ['id' => $agendamentopcs->id])}}">{{ \Carbon\Carbon::parse($agendamentopcs->data)->format('d/m/Y')}}</a></td>
-                <td><a style="text-decoration: none; color: black" href="{{route('showagenda', ['id' => $agendamentopcs->id])}}">{{ $agendamentopcs->hora }}</a></td>
-                <td><a style="text-decoration: none; color: black" href="{{route('showagenda', ['id' => $agendamentopcs->id])}}">{{ $agendamentopcs->status->name }}</a></td>
+                <td><a style="text-decoration: none; color: black" href="{{route('showretorno', ['id' => $agendamentorets->id])}}">{{ $agendamentorets->name }}</a></td>
+                <td><a style="text-decoration: none; color: black" href="{{route('showretorno', ['id' => $agendamentorets->id])}}">{{ $agendamentorets->telefone }}</a></td>
+                <td><a style="text-decoration: none; color: black" href="{{route('showretorno', ['id' => $agendamentorets->id])}}">{{ \Carbon\Carbon::parse($agendamentorets->data)->format('d/m/Y')}}</a></td>
+                <td><a style="text-decoration: none; color: black" href="{{route('showretorno', ['id' => $agendamentorets->id])}}">{{ $agendamentorets->hora }}</a></td>
+                <td><a style="text-decoration: none; color: black" href="{{route('showretorno', ['id' => $agendamentorets->id])}}">{{ $agendamentorets->status->name }}</a></td>
 
             </tr>
             @endforeach

@@ -1,20 +1,16 @@
 @extends('layout')
 
 @section('titulo')
-    E-Nutri Professor
-@endsection
-
-@section('cabecalho')
-    E-Nutri
+    E-Nutri Aluno
 @endsection
 @section('tipopagina')
 Agendar Paciente para Primeira Consulta
 @endsection
+@section('cabecalho')
+    E-Nutri
+@endsection
 @section('menuusuario')
         <li><a class="dropdown-item" href="#">{{$user}}</a></li>
-
-        <li><hr class="dropdown-divider" /></li>
-        <li><a class="dropdown-item" href="{{route('showuser')}}">Gerenciar Usuários</a></li>
         <li><hr class="dropdown-divider" /></li>
         <li><a class="dropdown-item" href="{{route('signout')}}">Sair</a></li>
 
