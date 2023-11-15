@@ -114,13 +114,13 @@ Editar Dados Paciente
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="rua" autocomplete="rua" name="rua" type="text"  value="{{$dadospaci->telres}}" placeholder="Enter your first name" />
+                                        <input class="form-control" id="rua" autocomplete="rua" name="rua" type="text"  value="{{$dadospaci->rua}}" placeholder="Enter your first name" />
                                         <label for="rua">Rua: </label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="numero" autocomplete="numero" name="numero" type="text"  value="{{$dadospaci->telres}}" placeholder="Enter your first name" />
+                                        <input class="form-control" id="numero" autocomplete="numero" name="numero" type="text"  value="{{$dadospaci->numero}}" placeholder="Enter your first name" />
                                         <label for="numero">Número: </label>
                                     </div>
                                 </div>
@@ -128,19 +128,19 @@ Editar Dados Paciente
                             <div class="row mb-4">
                                 <div class="col-md-3">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="bairro" autocomplete="bairro" name="bairro" type="text" value="{{$dadospaci->telres}}"  placeholder="Enter your first name" />
+                                        <input class="form-control" id="bairro" autocomplete="bairro" name="bairro" type="text" value="{{$dadospaci->bairro}}"  placeholder="Enter your first name" />
                                         <label for="bairro">Bairro: </label>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="rua" autocomplete="cidade" name="cidade" type="text"  value="{{$dadospaci->telres}}" placeholder="Enter your first name" />
+                                        <input class="form-control" id="rua" autocomplete="cidade" name="cidade" type="text"  value="{{$dadospaci->cidade}}" placeholder="Enter your first name" />
                                         <label for="cidade">Cidade: </label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="uf" autocomplete="uf" name="uf" type="text" value="{{$dadospaci->telres}}"  placeholder="Enter your first name" />
+                                        <input class="form-control" id="uf" autocomplete="uf" name="uf" type="text" value="{{$dadospaci->uf}}"  placeholder="Enter your first name" />
                                         <label for="uf">UF: </label>
                                     </div>
                                 </div>

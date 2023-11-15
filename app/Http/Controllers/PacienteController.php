@@ -31,10 +31,8 @@ class PacienteController extends Controller
             $acesso = User::where("name", $user)->get("acesso_id");
             $sexo = Sexo::all();
             $ec = Estadocivil::all();
-            $pacienteid = Agendamentopc::where("id", $id)->get("paciente_id");
-            $dadospaci = Paciente::find($pacienteid[0]->paciente_id);
-
-
+            $dadospaci = Paciente::find($id);
+        
             if($acesso[0]->acesso_id == 1){
                 return view('pacienteprof.create', ['sexo'=>$sexo, 'ec'=>$ec, 'dadospaci'=>$dadospaci, 'user'=>$user]);
             }else{
@@ -104,12 +102,13 @@ class PacienteController extends Controller
             $sexo = Sexo::all();
             $ec = Estadocivil::all();
 
+        if($acesso[0]->acesso_id == 1){//verifica se é aluno ou professor.
 
             return view('pacienteprof.edit', compact('dadospaci', 'user', 'sexo', 'ec'));//tela mostrar login com busca no banco.
 
         }else{
 
-            return view('pacientealu.edit', compact('dadospaci', 'user'));//tela mostrar login com busca no banco.        }
+            return view('pacientealu.edit', compact('dadospaci', 'user', 'sexo', 'ec'));//tela mostrar login com busca no banco.        }
         }
         }else{
 
@@ -123,6 +122,8 @@ class PacienteController extends Controller
     public function update(Request $request, string $id)
     {
         $paciente = Paciente::find($id);
+
+
 
 
         $paciente->update([

@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('titulo')
-    Tela Inciial
+    E-Nutri Aluno
 @endsection
 
 @section('menuusuario')
@@ -13,7 +13,10 @@
 
 @endsection
 @section('cabecalho')
-
+E-Nutri
+@endsection
+@section('tipopagina')
+Inicio
 @endsection
 
 @include('Menssagem/flash')
@@ -56,7 +59,7 @@
                 <div class="card bg-success text-white mb-4">
                     <div class="card-body">RETORNO</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">Iniciar Consulta</a>
+                        <a class="small text-white stretched-link" href="{{route('listaretorno')}}">Iniciar Consulta</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>

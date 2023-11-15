@@ -30,14 +30,6 @@ class Paciente extends Model
         return $this->belongsTo(Estadocivil::class);
     }
 
-    public function profissao(){
-        return $this->belongsTo(Profissao::class);
-    }
-
-    public function enndereco(){
-        return $this->belongsTo(Endereco::class);
-    }
-
     public function sexo(){
         return $this->belongsTo(Sexo::class);
     }
@@ -46,4 +38,7 @@ class Paciente extends Model
         return $this->hasMany(Agendamentopc::class);
     }
 
+    public function Retorno(){
+        return $this->hasMany(Retorno::class);
+    }
 }

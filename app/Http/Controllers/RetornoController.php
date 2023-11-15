@@ -30,6 +30,8 @@ class RetornoController extends Controller
 
             if($acesso[0]->acesso_id == 1){
                 return view('Agendamentoretprof.create', compact('user', 'pacientes', 'statu'));
+            }else{
+                return view('Agendamentoretalu.create', compact('user', 'pacientes', 'statu'));
             }
 
         }else{
@@ -89,24 +91,15 @@ class RetornoController extends Controller
 
             $user = Auth::user()->name;//busca nome usuário.
             $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
-
+            $agendamentoret = Retorno::where('status_id', 1)->orderBy('data')->get();//busca todos agendamentos cadastrados no banco.
 
             if($acesso[0]->acesso_id == 1){//verifica se é aluno ou professor.
-
-
-                $agendamentoret = Retorno::where('status_id', 1)->orderBy('data')->get();//busca todos agendamentos cadastrados no banco.
-
-
-
 
                 // $data = implode("/", array_reverse(explode("-",$agendamentopc[0]->data)));
 
                 return view('AgendamentoretProf.geren',['agendamentoret'=>$agendamentoret, 'user'=>$user]);//tela mostrar login com busca no banco.
 
             }else{
-
-                $agendamentoret = Retorno::where('status_id', 1)->orderBy('data')->get();//busca todos agendamentos cadastrados no banco.
-
 
                 return view('AgendamentoretAlu.geren',['agendamentoret'=>$agendamentoret, 'user'=>$user]);
             }
@@ -159,7 +152,7 @@ class RetornoController extends Controller
 
         }else{
 
-            return view('Agendamentoretalu.edit', compact('dadospaci', 'user', 'sexo', 'ec'));//tela mostrar login com busca no banco.        }
+            return view('Agendamentoretalu.paci', compact('dadospaci', 'user', 'sexo', 'ec'));//tela mostrar login com busca no banco.        }
         }
         }else{
 
@@ -180,7 +173,7 @@ class RetornoController extends Controller
             if($acesso[0]->acesso_id == 1){
                 return view('agendamentoretprof.show', ['agenda'=>$agenda, 'statu'=>$statu, 'user'=>$user, 'dadospaci'=>$dadospaci]);//tela edição de agendamento com informações.
             }else{
-                return view('agendamentoretalu.show', ['agenda'=>$agenda, 'statu'=>$statu, 'user'=>$user]);//tela edição de agendamento com informações.
+                return view('agendamentoretalu.show', ['agenda'=>$agenda, 'statu'=>$statu, 'user'=>$user, 'dadospaci'=>$dadospaci]);//tela edição de agendamento com informações.
 
             }
 
@@ -219,13 +212,13 @@ class RetornoController extends Controller
             $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
 
             $agenda = Retorno::find($id);//busca qual agendamento vai para edição.
-            $statu = StatusConsulta::where('id', $agenda->status_id)->get('name');//busca por status de não atendido como padrão.
+
 
             if($acesso[0]->acesso_id == 1){
-                return view('agendamentoretprof.edit', ['agenda'=>$agenda, 'statu'=>$statu, 'user'=>$user]);//tela edição de agendamento com informações.
+                return view('agendamentoretprof.edit', ['agenda'=>$agenda, 'user'=>$user]);//tela edição de agendamento com informações.
 
             }else{
-                return view('agendamentoretalu.edit', ['agenda'=>$agenda, 'statu'=>$statu, 'user'=>$user]);//tela edição de agendamento com informações.
+                return view('agendamentoretalu.edit', ['agenda'=>$agenda, 'user'=>$user]);//tela edição de agendamento com informações.
 
             }
 

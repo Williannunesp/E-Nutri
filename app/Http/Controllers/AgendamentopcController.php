@@ -189,7 +189,8 @@ class AgendamentopcController extends Controller
 
             "telefone" => $request->tel,
             "data" => $request->data,
-            "hora" => $request->hora
+            "hora" => $request->hora,
+            
         ]);
 
         return redirect('agendapc/list')->with('sucesso', 'Agenda alterada com sucesso.');//chama home com mensagem de sucesso
@@ -200,9 +201,12 @@ class AgendamentopcController extends Controller
     {
         $user = Auth::user()->name;//busca nome usuário.
         $acesso = User::where("name", $user)->get("acesso_id");
+        $agenda = Agendamentopc::find($id);
+        $paciente = Paciente::find($agenda->paciente_id);
 
     if($acesso[0]->acesso_id == 1){
         Agendamentopc::destroy($id);
+        Paciente::destroy($paciente->id);
 
         return redirect("/agendapc/list")->with('erro', 'Agendamento excluido com sucesso!');
     }else{

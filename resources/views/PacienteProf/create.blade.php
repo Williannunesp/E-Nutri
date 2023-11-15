@@ -44,13 +44,13 @@ Cadastro de Pacientes
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" id="cpf" autocomplete="cpf" name="cpf" type="number" required placeholder="Enter your first name" />
+                                    <input class="form-control" id="cpf" autocomplete="cpf" name="cpf" type="number" value="{{$dadospaci->cpf}}" required placeholder="Enter your first name" />
                                     <label for="cpf">CPF: <b style="color: red">*</b></label>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" id="profissao" name="profissao" autocomplete="profissao" type="text"  required placeholder="Enter your first name" />
+                                    <input class="form-control" id="profissao" name="profissao" autocomplete="profissao" type="text" value="{{$dadospaci->profissao}}" required placeholder="Enter your first name" />
                                     <label for="profissao">Profissão: <b style="color: red">*</b></label>
                                 </div>
                             </div>
@@ -62,9 +62,15 @@ Cadastro de Pacientes
                                  </label>
 
 
-                                       @foreach ($sexo as $sexos)
-                                       <option value="{{$sexos->id}}" >{{$sexos->name}}</option>
-                                       @endforeach
+                                 @foreach ($sexo as $sexos)
+                                 :
+                                 @php
+                                 $seEh = $dadospaci->sexo_id == $sexos->id;
+                                 $selecao = $seEh ? "selected = 'selected'" : '';
+
+                                 @endphp
+                                 <option value="{{$sexos->id}}" {{$selecao}}>{{$sexos->name}}</option>
+                                 @endforeach
 
 
                                    </select>
@@ -74,20 +80,23 @@ Cadastro de Pacientes
                                 <label for="ec" class=""> Estado Civil: <b style="color: red">*</b>
                                  <select name="ec" class="form-select " aria-label="Default select example">
                                  </label>
+                                 @foreach ($ec as $ecs)
+                                 :
+                                 @php
+                                 $seEh = $dadospaci->estci_id == $ecs->id;
+                                 $selecao = $seEh ? "selected = 'selected'" : '';
 
-
-                                       @foreach ($ec as $ecs)
-                                       <option value="{{$ecs->id}}" >{{$ecs->name}}</option>
-                                       @endforeach
-
+                                 @endphp
+                                 <option value="{{$ecs->id}}" {{$selecao}}>{{$ecs->name}}</option>
+                                 @endforeach
 
                                    </select>
 
                              </div>
                             <div class="col-md-3 mt-1">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" id="data" name="data" autocomplete="data" type="date" required placeholder="Enter your first name" />
-                                    <label for="data">Data de Nascimento: <b style="color: red">*</b></label>
+                                    <input class="form-control" id="datanasc" name="datanasc" autocomplete="datanasc" type="date" value="{{$dadospaci->datanasc}}" required placeholder="Enter your first name" />
+                                    <label for="datanasc">Data de Nascimento: <b style="color: red">*</b></label>
                                 </div>
                             </div>
                             <div class="col-md-3 mt-1">
@@ -99,19 +108,19 @@ Cadastro de Pacientes
                             <div class="row mb-4 mt-4">
                                 <div class="col-md-3 ">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="telres" name="telres" autocomplete="telres" type="number"  placeholder="Enter your first name" />
+                                        <input class="form-control" id="telres" name="telres" autocomplete="telres" type="number" value="{{$dadospaci->telres}}"  placeholder="Enter your first name" />
                                         <label for="telres">Telefone Residencial: </label>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="rua" autocomplete="rua" name="rua" type="text"   placeholder="Enter your first name" />
+                                        <input class="form-control" id="rua" autocomplete="rua" name="rua" type="text" value="{{$dadospaci->rua}}"  placeholder="Enter your first name" />
                                         <label for="rua">Rua: </label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="numero" autocomplete="numero" name="numero" type="text"   placeholder="Enter your first name" />
+                                        <input class="form-control" id="numero" autocomplete="numero" name="numero" value="{{$dadospaci->numero}}"  type="text"   placeholder="Enter your first name" />
                                         <label for="numero">Número: </label>
                                     </div>
                                 </div>
@@ -119,19 +128,19 @@ Cadastro de Pacientes
                             <div class="row mb-4">
                                 <div class="col-md-3">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="bairro" autocomplete="bairro" name="bairro" type="text"   placeholder="Enter your first name" />
+                                        <input class="form-control" id="bairro" autocomplete="bairro" name="bairro" type="text" value="{{$dadospaci->bairro}}"  placeholder="Enter your first name" />
                                         <label for="bairro">Bairro: </label>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="rua" autocomplete="cidade" name="cidade" type="text"   placeholder="Enter your first name" />
+                                        <input class="form-control" id="rua" autocomplete="cidade" name="cidade" type="text" value="{{$dadospaci->cidade}}"  placeholder="Enter your first name" />
                                         <label for="cidade">Cidade: </label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="uf" autocomplete="uf" name="uf" type="text"   placeholder="Enter your first name" />
+                                        <input class="form-control" id="uf" autocomplete="uf" name="uf" type="text" value="{{$dadospaci->uf}}"  placeholder="Enter your first name" />
                                         <label for="uf">UF: </label>
                                     </div>
                                 </div>

@@ -12,5 +12,9 @@ class StatusConsulta extends Model
     public function Agenda(){
         return $this->hasMany(Agendamentopc::class);
     }
+
+    public function Retorno(){
+        return $this->hasMany(Retorno::class);
+    }
 }
 

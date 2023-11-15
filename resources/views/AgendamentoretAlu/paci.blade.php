@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('titulo')
-    E-Nutri Professor
+    E-Nutri Aluno
 @endsection
 
 @section('cabecalho')
@@ -9,13 +9,10 @@
 @endsection
 
 @section('tipopagina')
-Editar Dados Paciente
+Se Necessário Atualize os Dados do Paciente
 @endsection
 @section('menuusuario')
         <li><a class="dropdown-item" href="#">{{$user}}</a></li>
-
-        <li><hr class="dropdown-divider" /></li>
-        <li><a class="dropdown-item" href="{{route('showuser')}}">Gerenciar Usuários</a></li>
         <li><hr class="dropdown-divider" /></li>
         <li><a class="dropdown-item" href="{{route('signout')}}">Sair</a></li>
 
@@ -25,7 +22,7 @@ Editar Dados Paciente
 
     @section('navbar')
     <div class="sb-sidenav-menu-heading">Voltar</div>
-    <a class="nav-link" href="{{route('gerenciarpaciente')}}">
+    <a class="nav-link" href="{{route('listaretorno')}}">
         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
        Voltar
     </a>
@@ -149,7 +146,7 @@ Editar Dados Paciente
                                 </div>
                             </div>
                             <div class="col-2" style="margin-top: 20px"><br><br><br>
-                                <button class="btn btn-primary btn-lg float-right"  stype="submit">Salvar</button>
+                                <button class="btn btn-primary btn-lg float-right"  stype="submit">Continuar</button>
                             </div>
 
                             <div class="col-1"></div>

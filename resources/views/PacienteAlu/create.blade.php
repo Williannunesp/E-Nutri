@@ -83,8 +83,8 @@ Cadastro de Pacientes
                              </div>
                             <div class="col-md-3 mt-1">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" id="data" name="data" autocomplete="data" type="date" required placeholder="Enter your first name" />
-                                    <label for="data">Data de Nascimento: <b style="color: red">*</b></label>
+                                    <input class="form-control" id="datanasc" name="datanasc" autocomplete="datanasc" type="date" required placeholder="Enter your first name" />
+                                    <label for="datanasc">Data de Nascimento: <b style="color: red">*</b></label>
                                 </div>
                             </div>
                             <div class="col-md-3 mt-1">
