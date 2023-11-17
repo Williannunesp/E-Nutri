@@ -17,6 +17,12 @@ return new class extends Migration
             $table->string('telefone');
             $table->date('data');
             $table->string('hora');
+            $table->text('descriçãofichapc')->nullable();
+            $table->string('fichapc')->nullable();
+            $table->text('descriçãoantro')->nullable();
+            $table->string('antropometrica')->nullable();
+            $table->text('descriçãodieta')->nullable();
+            $table->string('dieta')->nullable();
             $table->unsignedBigInteger('status_id');
             $table->foreign('status_id')->references('id')->on('status_consultas');
             $table->unsignedBigInteger('paciente_id');

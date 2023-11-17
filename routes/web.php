@@ -5,6 +5,7 @@ use App\Http\Controllers\AgendamentopcController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\PrimeiracosnutaController;
 use App\Http\Controllers\RetornoController;
 use App\Models\Paciente;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,7 @@ Route::post('/agendapc/edit/{id}', [AgendamentopcController::class, 'update'])->
 Route::post('/agendapc/destoy/{id}', [AgendamentopcController::class, 'destroy'])->name('exluiragenda');
 
 Route::get('/paciente/novo/{id}', [PacienteController::class, 'create'])->name('telacadpaciente');
+Route::post('/paciente/novo/{id}', [PacienteController::class, 'store'])->name('criapaciente');
 Route::post('/paciente/up/{id}', [PacienteController::class, 'update'])->name('editpaciente');
 Route::get('/paciente/gerenciar', [PacienteController::class, 'show'])->name('gerenciarpaciente');
 Route::post('/paciente/destoy/{id}', [PacienteController::class, 'destroy'])->name('exluirpaciente');
@@ -62,3 +64,6 @@ Route::post('/retorno/edit/{id}', [RetornoController::class, 'update'])->name('u
 Route::post('/retorno/destoy/{id}', [RetornoController::class, 'destroy'])->name('exluirretorno');
 Route::get('/retorno/show/{id}', [RetornoController::class, 'show'])->name('showretorno');
 Route::get('/retorno/editpaci/{id}', [RetornoController::class, 'editpaci'])->name('editpaciretorno');
+Route::post('/retorno/editpaci/{id}', [RetornoController::class, 'pacienteup'])->name('uppacienteret');
+
+Route::get('/pc', [PrimeiracosnutaController::class, 'create'])->name('pconsulta');

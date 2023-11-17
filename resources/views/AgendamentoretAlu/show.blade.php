@@ -57,10 +57,9 @@
             </div>
                 <div class="row">
                     <div class="col-2" style="margin-top: 20px"><br><br><br>
-                        @foreach ($dadospaci as $dadospacis)
-                        <a href="{{route('editpaciretorno', ['id' => $dadospacis->id])}}"><button class="btn btn-primary btn-lg float-right"  stype="submit">Iniciar Consulta</button></a>
-                    </div>@endforeach
-                </div>
+
+                        <a href="{{route('editpaciretorno', ['id' => $agenda->id])}}"><button class="btn btn-primary btn-lg float-right"  stype="submit">Próximo</button></a>
+                    </div>
         </div>
 
                     </div>

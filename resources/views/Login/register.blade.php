@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('titulo')
-E-Nutri
+E-Nutri Professor
 @endsection
 
 @section('cabecalho')

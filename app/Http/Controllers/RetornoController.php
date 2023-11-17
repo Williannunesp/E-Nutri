@@ -139,7 +139,7 @@ class RetornoController extends Controller
 
             $user = Auth::user()->name;//busca nome usuário.
             $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
-            $dadospaci = Paciente::find($id);//busca todos usuários cadastrados no banco.
+            $agenda = Retorno::find($id);//busca todos usuários cadastrados no banco.
             $sexo = Sexo::all();
             $ec = Estadocivil::all();
 
@@ -148,18 +148,49 @@ class RetornoController extends Controller
 
 
 
-            return view('Agendamentoretprof.paci', compact('dadospaci', 'user', 'sexo', 'ec'));//tela mostrar login com busca no banco.
+            return view('Agendamentoretprof.paci', compact('agenda', 'user', 'sexo', 'ec'));//tela mostrar login com busca no banco.
 
         }else{
 
-            return view('Agendamentoretalu.paci', compact('dadospaci', 'user', 'sexo', 'ec'));//tela mostrar login com busca no banco.        }
+            return view('Agendamentoretalu.paci', compact('agenda', 'user', 'sexo', 'ec'));//tela mostrar login com busca no banco.        }
         }
         }else{
 
         return redirect('home');//chama endereço home.
         }
     }
+    public function pacienteup(Request $request, string $id){
+        $agenda = Retorno::find($id);
 
+
+
+
+        $agenda->paciente->update([
+            "name" => $request->name,
+            "cpf" => $request->cpf,
+            "datanasc" => $request->datanasc,
+            "email" => $request->email,
+            "profissao" => $request->profissao,
+            "celular" => $request->cel,
+            "telres" => $request->telres,
+            "rua" => $request->rua,
+            "numero" => $request->numero,
+            "bairro" => $request->bairro,
+            "cidade" => $request->cidade,
+            "uf" => $request->uf,
+            "estci_id" => $request->ec,
+            "sexo_id" => $request->sexo,
+
+
+        ]);
+        $user = Auth::user()->name;//busca nome usuário.
+        $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
+        if($acesso[0]->acesso_id == 1){
+            return view('retornoprof.create', compact('agenda', 'user') );
+        }else{
+            return view('retornoalu.create', compact('agenda', 'user') );
+        }
+    }
     public function show(string $id)
     {
         if(Auth::check()){//verifica se possui usuário logado.
@@ -168,12 +199,12 @@ class RetornoController extends Controller
             $statu = StatusConsulta::where('id', 1)->get('name');//busca por status de não atendido como padrão.
             $user = Auth::user()->name;//busca nome usuário.
             $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
-            $dadospaci = Paciente::where("id", $agenda->paciente_id)->get();
+
 
             if($acesso[0]->acesso_id == 1){
-                return view('agendamentoretprof.show', ['agenda'=>$agenda, 'statu'=>$statu, 'user'=>$user, 'dadospaci'=>$dadospaci]);//tela edição de agendamento com informações.
+                return view('agendamentoretprof.show', ['agenda'=>$agenda, 'statu'=>$statu, 'user'=>$user]);//tela edição de agendamento com informações.
             }else{
-                return view('agendamentoretalu.show', ['agenda'=>$agenda, 'statu'=>$statu, 'user'=>$user, 'dadospaci'=>$dadospaci]);//tela edição de agendamento com informações.
+                return view('agendamentoretalu.show', ['agenda'=>$agenda, 'statu'=>$statu, 'user'=>$user]);//tela edição de agendamento com informações.
 
             }
 

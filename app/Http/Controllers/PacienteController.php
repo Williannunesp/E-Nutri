@@ -31,12 +31,12 @@ class PacienteController extends Controller
             $acesso = User::where("name", $user)->get("acesso_id");
             $sexo = Sexo::all();
             $ec = Estadocivil::all();
-            $dadospaci = Paciente::find($id);
+            $agenda = Agendamentopc::find($id);
 
             if($acesso[0]->acesso_id == 1){
-                return view('pacienteprof.create', ['sexo'=>$sexo, 'ec'=>$ec, 'dadospaci'=>$dadospaci, 'user'=>$user]);
+                return view('pacienteprof.create', ['sexo'=>$sexo, 'ec'=>$ec, 'agenda'=>$agenda, 'user'=>$user]);
             }else{
-                return view('pacientealu.create', ['sexo'=>$sexo, 'ec'=>$ec, 'dadospaci'=>$dadospaci, 'user'=>$user]);
+                return view('pacientealu.create', ['sexo'=>$sexo, 'ec'=>$ec, 'agenda'=>$agenda, 'user'=>$user]);
 
             }
 
@@ -56,9 +56,38 @@ class PacienteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, string $id)
     {
-        //
+        $agenda = Agendamentopc::find($id);
+
+
+
+
+        $agenda->paciente->update([
+            "name" => $request->name,
+            "cpf" => $request->cpf,
+            "datanasc" => $request->datanasc,
+            "email" => $request->email,
+            "profissao" => $request->profissao,
+            "celular" => $request->cel,
+            "telres" => $request->telres,
+            "rua" => $request->rua,
+            "numero" => $request->numero,
+            "bairro" => $request->bairro,
+            "cidade" => $request->cidade,
+            "uf" => $request->uf,
+            "estci_id" => $request->ec,
+            "sexo_id" => $request->sexo,
+
+
+        ]);
+        $user = Auth::user()->name;//busca nome usuário.
+        $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
+        if($acesso[0]->acesso_id == 1){
+            return view('primeiraconsultaprof.create', compact('agenda', 'user') );
+        }else{
+            return view('primeiraconsultaalu.create', compact('agenda', 'user') );
+        }
     }
 
     /**

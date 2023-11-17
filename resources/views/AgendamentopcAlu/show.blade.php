@@ -57,7 +57,7 @@
             </div>
                 <div class="row">
                     <div class="col-2" style="margin-top: 20px"><br><br><br>
-                        <a href="{{route('telacadpaciente', ['id' => $agenda->paciente->id])}}"><button class="btn btn-primary btn-lg float-right"  stype="submit">Iniciar Consulta</button></a>
+                        <a href="{{route('telacadpaciente', ['id' => $agenda->paciente->id])}}"><button class="btn btn-primary btn-lg float-right"  stype="submit">Próximo</button></a>
                     </div>
                 </div>
         </div>
