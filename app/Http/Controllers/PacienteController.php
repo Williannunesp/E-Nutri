@@ -32,7 +32,7 @@ class PacienteController extends Controller
             $sexo = Sexo::all();
             $ec = Estadocivil::all();
             $dadospaci = Paciente::find($id);
-        
+
             if($acesso[0]->acesso_id == 1){
                 return view('pacienteprof.create', ['sexo'=>$sexo, 'ec'=>$ec, 'dadospaci'=>$dadospaci, 'user'=>$user]);
             }else{
@@ -145,7 +145,7 @@ class PacienteController extends Controller
 
         ]);
 
-        return redirect('home');
+        return redirect('/paciente/gerenciar')->with('sucesso', 'Paciente Alterado com Sucesso!');;
     }
 
     /**

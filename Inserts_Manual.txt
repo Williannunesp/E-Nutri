@@ -1,0 +1,10 @@
+INSERT INTO acessos (name) VALUES ("PROFESSOR"), ("ALUNO");
+
+INSERT INTO status (name) VALUES ("ATIVO"), ("INATIVO");
+
+INSERT INTO estadocivils (name) VALUES ("SOLTEIRO"), ("CASADO"), ("SEPARADO"), ("DIVORCIADO"), ("VIÚVO");
+
+INSERT INTO sexos (name) VALUES ("MASCULINO"), ("FEMININO");
+
+INSERT INTO status_consultas (name) VALUES ("NÃO ATENDIDO"), ("ATENDIDO");
+

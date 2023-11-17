@@ -280,14 +280,14 @@ class AuthController extends Controller
     }
     }
 
-    // public function LogAdm (){
+    public function LogAdm (){
 
-    //     $status = Statu::all();
-    //     $acesso = Acesso::all();
+        $status = Statu::all();
+        $acesso = Acesso::all();
 
-    //     return view('Login.Register', ['status'=> $status, 'acesso'=> $acesso]);
+        return view('Logadm.Register', ['status'=> $status, 'acesso'=> $acesso]);
 
-    // }
+    }
 
 
 }
