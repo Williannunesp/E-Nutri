@@ -40,7 +40,7 @@ class PrimeiraconsultaController extends Controller
     public function store(Request $request, $id)
     {
         $user = Auth::user()->name;
-
+ 
 
 
         $agenda = Agendamentopc::find($id);
@@ -78,7 +78,7 @@ class PrimeiraconsultaController extends Controller
             }else{
                 $cdie = 0;
             }
-         
+
 
         $agenda->update([
             'descriçãofichapc' => $request->descpc,

@@ -32,7 +32,7 @@ Agendar Primeira Consulta
 
 
     @endsection
-              <form action="#" method="POST" enctype="multipart/form-data">
+              <form action="{{route('criaanexoret', ['id' => $agenda->id])}}" method="POST" enctype="multipart/form-data">
                 @csrf
                     <div class="container">
                         <div class="row mb-4">

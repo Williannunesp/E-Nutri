@@ -65,7 +65,7 @@ Agendar Primeira Consulta
                             </div>
                                     <div class="col col-2"> <br>
                                         @foreach ($statu as $status)
-                                        <input class="form-control" id="status" name="status" autocomplete="status" type="text" style="font-weight: bold" value="{{$status->name}}" disabled />
+                                        <input class="form-control" id="status" name="status" autocomplete="status" type="text" style="font-weight: bold; color: red" value="{{$status->name}}" disabled />
 
                                         @endforeach
                                 </div> <br>

@@ -5,9 +5,12 @@ use App\Http\Controllers\AgendamentopcController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\PrimeiraconsultaController;
 use App\Http\Controllers\PrimeiracosnutaController;
+use App\Http\Controllers\ProntuarioController;
 use App\Http\Controllers\RetornoController;
 use App\Models\Paciente;
+use App\Models\Primeiraconsulta;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +55,7 @@ Route::post('/paciente/up/{id}', [PacienteController::class, 'update'])->name('e
 Route::get('/paciente/gerenciar', [PacienteController::class, 'show'])->name('gerenciarpaciente');
 Route::post('/paciente/destoy/{id}', [PacienteController::class, 'destroy'])->name('exluirpaciente');
 Route::get('/paciente/edit/{id}', [PacienteController::class, 'edit'])->name('telaeditpaciente');
+Route::get('/paciente/view/{id}', [PacienteController::class, 'view'])->name('viewpaciente');
 
 Route::get('/retorno/gerenciar', [RetornoController::class, 'gerenciar'])->name('gerenciarretorno');
 Route::get('/retorno/busc', [RetornoController::class, 'selecionar'])->name('listaretorno');
@@ -65,5 +69,10 @@ Route::post('/retorno/destoy/{id}', [RetornoController::class, 'destroy'])->name
 Route::get('/retorno/show/{id}', [RetornoController::class, 'show'])->name('showretorno');
 Route::get('/retorno/editpaci/{id}', [RetornoController::class, 'editpaci'])->name('editpaciretorno');
 Route::post('/retorno/editpaci/{id}', [RetornoController::class, 'pacienteup'])->name('uppacienteret');
+Route::post('/retorno/{id}', [RetornoController::class, 'storeconsulta'])->name('criaanexoret');
 
-,
+Route::post('/pc/{id}', [PrimeiraconsultaController::class, 'store'])->name('criaanexopc');
+
+Route::get('/prontuario', [ProntuarioController::class, 'index'])->name('iniciopront');
+Route::get('/prontuario/show/{id}', [ProntuarioController::class, 'show'])->name('showpront');
+Route::get('/prontuario/showp/{id}', [ProntuarioController::class, 'edit'])->name('showprontpc');

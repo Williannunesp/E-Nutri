@@ -59,10 +59,6 @@ class ProntuarioController extends Controller
         $paciente = Paciente::query()->orderBy('name')->get();
         $acesso = User::where("name", $user)->get("acesso_id");
         if (Auth::check()){
-
-
-
-
         if($acesso[0]->acesso_id == 1){
             return view('prontuarioprof.show', compact('retorno', 'user', 'id'));
         }else{
@@ -82,16 +78,12 @@ class ProntuarioController extends Controller
         $paciente = Paciente::query()->orderBy('name')->get();
         $acesso = User::where("name", $user)->get("acesso_id");
         if (Auth::check()){
-
-
-
-
         if($acesso[0]->acesso_id == 1){
 
-            return view('prontuarioprof.showp', compact('pc', 'user'));
+            return view('prontuarioprof.showp', compact('pc', 'user', 'id'));
 
         }else{
-            return view('prontuarioalu.showp', compact('pc', 'user'));
+            return view('prontuarioalu.showp', compact('pc', 'user', 'id'));
         }
     }
 
