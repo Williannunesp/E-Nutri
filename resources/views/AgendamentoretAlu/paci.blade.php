@@ -146,7 +146,7 @@ Se Necessário Atualize os Dados do Paciente
                                 </div>
                             </div>
                             <div class="col-2" style="margin-top: 20px"><br><br><br>
-                                <button class="btn btn-primary btn-lg float-right"  stype="submit">Continuar</button>
+                                <button class="btn btn-primary btn-lg float-right"  stype="submit">Iniciar Consulta</button>
                             </div>
 
                             <div class="col-1"></div>

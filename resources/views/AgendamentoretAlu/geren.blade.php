@@ -26,6 +26,10 @@ Lista de Agendamentos Retorno
     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
    Agendar Consulta
 </a>
+<a class="nav-link" href="{{route('listaretorno')}}">
+    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+   Iniciar Consulta
+</a>
 <a class="nav-link" href="{{route('atendidoretorno')}}">
     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
    Pacientes Atendidos

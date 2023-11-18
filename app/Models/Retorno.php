@@ -15,7 +15,14 @@ class Retorno extends Model
         "data",
         "hora",
         "status_id",
-        "paciente_id"
+        "paciente_id",
+        'descriçãofichapc',
+        'fichapc',
+        'descriçãoantro',
+        'antropometrica',
+        'descriçãodieta',
+        'dieta',
+        'username'
     ];
 
     public function status(){

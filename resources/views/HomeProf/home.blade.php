@@ -70,11 +70,39 @@ Inicio
                 <div class="card bg-danger text-white mb-4">
                     <div class="card-body">PACIENTE</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">Prontuário</a>
+                        <a class="small text-white stretched-link" href="{{route('iniciopront')}}">Prontuário</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
             </div>
+        </div> <br> <br> <br> <br>
+        <h1>Busca Pacientes</h1>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Nome Paciente</th>
+                        <th>Celular</th>
+                        <th>CPF</th>
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach ($pacientes as $paciente)
+
+                    <tr>
+
+                        <td><a style="text-decoration: none; color: black" href="{{route('viewpaciente', ['id' => $paciente->id])}}">{{ $paciente->name }} </a></td>
+                        <td><a style="text-decoration: none; color: black" href="{{route('viewpaciente', ['id' => $paciente->id])}}">{{ $paciente->celular }}</a></td>
+                        <td><a style="text-decoration: none; color: black" href="{{route('viewpaciente', ['id' => $paciente->id])}}">{{ $paciente->cpf }}</a></td>
+
+                    </tr>
+                    @endforeach
+
+                </tbody>
+            </table>
         </div>
 
 

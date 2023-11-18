@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Acesso;
 use App\Models\Agendamentopc;
+use App\Models\Paciente;
 use App\Models\Statu;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,16 +24,16 @@ class AuthController extends Controller
                 $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
                 $status = User::where("name", $user)->get("status_id");//busca id do status do usuário.
                 $agenda = Agendamentopc::query()->orderBy('status_id')->get();//busca todos agendamentos.
-
+                $pacientes = Paciente::query()->orderBy('name')->get();
             if($status[0]->status_id == 1){//verifica se é ativa ou inativo.
 
                 if($acesso[0]->acesso_id == 1){//verifica se é aluno ou professor.
 
-                        return view('homeprof.home', ['agenda'=>$agenda, 'user'=>$user]);//mostra tela inicial de professores.
+                        return view('homeprof.home', ['agenda'=>$agenda, 'user'=>$user, 'pacientes' => $pacientes]);//mostra tela inicial de professores.
 
                 }else{
 
-                        return view('homealu.home', ['agenda'=>$agenda,  'user'=>$user]);//mostra tela inicial de alunos.
+                        return view('homealu.home', ['agenda'=>$agenda,  'user'=>$user, 'pacientes' => $pacientes]);//mostra tela inicial de alunos.
 
                 }
 
@@ -120,14 +121,15 @@ class AuthController extends Controller
             $user = Auth::user()->name;//busca nome usuário.
             $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
             $agenda = Agendamentopc::query()->orderBy('status_id')->get();//busca todos agendamentos.
-
+            $pacientes = Paciente::query()->orderBy('name')->get();
+            
             if($acesso[0]->acesso_id == 1){//verifica se é aluno ou professor.
 
-                return view('homeprof.home', ['agenda'=>$agenda, 'user'=>$user]);//mostra tela inicial de professores.
+                return view('homeprof.home', ['agenda'=>$agenda, 'user'=>$user, 'pacientes' => $pacientes]);//mostra tela inicial de professores.
 
             }else{
 
-                return view('homealu.home', ['agenda'=>$agenda, 'user'=>$user]);//mostra tela inicial de alunos.
+                return view('homealu.home', ['agenda'=>$agenda, 'user'=>$user, 'pacientes' => $pacientes]);//mostra tela inicial de alunos.
 
             }
         }else{

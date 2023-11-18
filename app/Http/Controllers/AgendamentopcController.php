@@ -51,7 +51,7 @@ class AgendamentopcController extends Controller
         ]);
 
         $pacienteid = Paciente::where("name", $request->name)->get("id");//busca id do paciente para vincular com agendamento primeira consulta.
-
+        $user = Auth::user()->name;
         foreach ($pacienteid as $pacienteids) {
             Agendamentopc::create([//salva no banco um agendamento de consulta.
 
@@ -60,6 +60,7 @@ class AgendamentopcController extends Controller
                 "data" => $request->data,
                 "hora" => $request->hora,
                 "paciente_id" => $pacienteids->id,
+                "username" => $user,
                 "status_id" => 1
 
             ]);
@@ -190,7 +191,7 @@ class AgendamentopcController extends Controller
             "telefone" => $request->tel,
             "data" => $request->data,
             "hora" => $request->hora,
-            
+
         ]);
 
         return redirect('agendapc/list')->with('sucesso', 'Agenda alterada com sucesso.');//chama home com mensagem de sucesso

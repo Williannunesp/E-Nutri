@@ -35,7 +35,7 @@ Agendar Primeira Consulta
 
 
     @endsection
-              <form action="#" method="POST" enctype="multipart/form-data">
+              <form action="{{route('criaanexopc', ['id' => $agenda->id])}}" method="POST" enctype="multipart/form-data">
                 @csrf
                     <div class="container">
                         <div class="row mb-4">
@@ -69,7 +69,7 @@ Agendar Primeira Consulta
                         <label for="dieta">● Se possuir dieta anexar em formato pdf (arquivo único) </label>
                     </div>
                         <div class="mt-1">
-                                <input class="form-control-file" id="dieta" autocomplete="dieta" name="dieta" type="file" required placeholder="Enter your first name" />
+                                <input class="form-control-file" id="dieta" autocomplete="dieta" name="dieta" type="file"  placeholder="Enter your first name" />
                         </div>
 
                         </div>

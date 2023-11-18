@@ -81,6 +81,13 @@ class PacienteController extends Controller
 
 
         ]);
+
+        $agenda->update([
+            "name" => $request->name,
+            "telefone" => $request->cel,
+        ]);
+
+
         $user = Auth::user()->name;//busca nome usuário.
         $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
         if($acesso[0]->acesso_id == 1){
@@ -90,9 +97,28 @@ class PacienteController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
+    public function view($id){
+        if (Auth::check()){//verifica se possui usuário logado.
+
+            $user = Auth::user()->name;//busca nome usuário.
+            $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
+            $dadospaci = Paciente::find($id);//busca todos usuários cadastrados no banco.
+            $sexo = Sexo::all();
+            $ec = Estadocivil::all();
+
+        if($acesso[0]->acesso_id == 1){//verifica se é aluno ou professor.
+
+            return view('pacienteprof.show', compact('dadospaci', 'user', 'sexo', 'ec'));//tela mostrar login com busca no banco.
+
+        }else{
+
+            return view('pacientealu.show', compact('dadospaci', 'user', 'sexo', 'ec'));//tela mostrar login com busca no banco.        }
+        }
+        }else{
+
+        return redirect('home');//chama endereço home.
+        }
+    }
     public function show()
     {
         if (Auth::check()){//verifica se possui usuário logado.

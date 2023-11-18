@@ -66,4 +66,4 @@ Route::get('/retorno/show/{id}', [RetornoController::class, 'show'])->name('show
 Route::get('/retorno/editpaci/{id}', [RetornoController::class, 'editpaci'])->name('editpaciretorno');
 Route::post('/retorno/editpaci/{id}', [RetornoController::class, 'pacienteup'])->name('uppacienteret');
 
-Route::get('/pc', [PrimeiracosnutaController::class, 'create'])->name('pconsulta');
+,

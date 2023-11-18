@@ -16,7 +16,15 @@ class Agendamentopc extends Model
         'data',
         'hora',
         'paciente_id',
-        'status_id'
+        'status_id',
+        'descriçãofichapc',
+        'fichapc',
+        'descriçãoantro',
+        'antropometrica',
+        'descriçãodieta',
+        'dieta',
+        'username'
+
     ];
 
     public function status(){

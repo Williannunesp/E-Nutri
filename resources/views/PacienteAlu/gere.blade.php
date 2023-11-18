@@ -22,7 +22,7 @@ Gerenciar Pacientes
     <a class="nav-link" href="{{route('home')}}"> <i class="fas fa-arrow-alt-circle-left"></i><span class="ttip">Inicio</span></a>
 </li> --}}
 <div class="sb-sidenav-menu-heading">Pacientes</div>
-<a class="nav-link" href="#">
+<a class="nav-link" href="{{route('iniciopront')}}">
     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
    Prontuário
 </a>

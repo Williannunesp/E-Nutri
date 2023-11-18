@@ -69,7 +69,7 @@ class RetornoController extends Controller
     {
         $pacienteid = Paciente::where("name", $request->name)->get("id");
 
-
+        $user = Auth::user()->name;
         foreach ($pacienteid as $pacienteids) {
             Retorno::create([//salva no banco um agendamento de consulta.
 
@@ -78,6 +78,7 @@ class RetornoController extends Controller
                 "data" => $request->data,
                 "hora" => $request->hora,
                 "paciente_id" => $pacienteids->id,
+                "username" => $user,
                 "status_id" => 1
 
             ]);
@@ -183,6 +184,12 @@ class RetornoController extends Controller
 
 
         ]);
+
+        $agenda->update([
+            "name" => $request->name,
+            "telefone" => $request->cel,
+        ]);
+
         $user = Auth::user()->name;//busca nome usuário.
         $acesso = User::where("name", $user)->get("acesso_id");//busca id tipo de acesso.
         if($acesso[0]->acesso_id == 1){
@@ -232,9 +239,64 @@ class RetornoController extends Controller
         return redirect('home');//chama endereço home.
     }
     }
-    /**
-     * Show the form for editing the specified resource.
-     */
+
+    public function storeconsulta(Request $request, $id){
+        $user = Auth::user()->name;
+
+
+
+        $agenda = Retorno::find($id);
+
+
+        if($request->ficharet){
+            $extensionret = $request->ficharet->extension();
+            if($extensionret == 'pdf'){
+            // $ficharetname = $agenda->name . "_Primeira_Consulta" . now() . "." . $extensionret;
+
+            $cret = $request->ficharet->store('retorno');
+            }else{
+                return null;
+            }
+
+
+            }if($request->fichaav){
+                $extensionav = $request->fichaav->extension();
+                if($extensionav == 'pdf'){
+                // $fichaavname = $agenda->name . "_Avaliação_Antropometrica" . now() . "." . $extensionav;
+
+                $cav = $request->file('fichaav')->store('retav_antropometrica');
+                }else{
+                    return null;
+                }
+
+        }
+        if($request->dieta){
+            $extensiondie = $request->dieta->extension();
+            if($extensiondie == 'pdf'){
+            $cdie = $request->file('dieta')->store('retdieta');
+            }else{
+                return null;
+            }
+
+        }else{
+            $cdie = 0;
+        }
+        // dd($cpc);
+
+        $agenda->update([
+            'descriçãoficharet' => $request->descret,
+            'ficharet' => $cret,
+            'descriçãoantro' => $request->descav,
+            'antropometrica' => $cav,
+            'descriçãodieta' => $request->descdie,
+            'dieta' => $cdie,
+            'status_id' => 2,
+            'username' => $user,
+        ]);
+
+
+        return redirect('home')->with('sucesso', 'Consulta Finalizada');
+    }
     public function edit(string $id)
     {
         if(Auth::check()){//verifica se possui usuário logado.

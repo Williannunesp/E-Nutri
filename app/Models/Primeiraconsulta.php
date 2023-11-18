@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Primeiraconsulta extends Model
 {
     use HasFactory;
+
+
 }

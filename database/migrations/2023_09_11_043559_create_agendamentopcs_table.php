@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('descriçãoantro')->nullable();
             $table->string('antropometrica')->nullable();
             $table->text('descriçãodieta')->nullable();
+            $table->string('username')->nullable();
             $table->string('dieta')->nullable();
             $table->unsignedBigInteger('status_id');
             $table->foreign('status_id')->references('id')->on('status_consultas');

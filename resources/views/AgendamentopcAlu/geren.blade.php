@@ -26,6 +26,10 @@ Lista de Agendamentos Pirmeira Consulta
     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
    Agendar Consulta
 </a>
+<a class="nav-link" href="{{route('listaagenda')}}">
+    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+   Iniciar Consulta
+</a>
 <a class="nav-link" href="{{route('buscaatendidos')}}">
     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
    Pacientes Atendidos
