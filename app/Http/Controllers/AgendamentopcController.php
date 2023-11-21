@@ -47,7 +47,8 @@ class AgendamentopcController extends Controller
 
         Paciente::create([
             "name" => $request->name,
-            "celular" => $request->tel
+            "celular" => $request->tel,
+            "cpf" => "00000000000"
         ]);
 
         $pacienteid = Paciente::where("name", $request->name)->get("id");//busca id do paciente para vincular com agendamento primeira consulta.

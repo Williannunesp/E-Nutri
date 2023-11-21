@@ -63,15 +63,16 @@ Ver Dados Paciente
                                  </label>
 
 
-                                       @foreach ($sexo as $sexos)
-                                       :
-                                       @php
-                                       $seEh = $dadospaci->sexos_id == $sexos->id;
-                                       $selecao = $seEh ? "selected = 'selected'" : '';
 
-                                       @endphp
-                                       <option value="{{$sexos->id}}" {{$selecao}}>{{$sexos->name}}</option>
-                                       @endforeach
+                                 @foreach ($sexo as $sexos)
+                                 :
+                                 @php
+                                 $seEh = $agenda->paciente->sexo_id == $sexos->id;
+                                 $selecao = $seEh ? "selected = 'selected'" : '';
+
+                                 @endphp
+                                 <option value="{{$sexos->id}}" {{$selecao}}>{{$sexos->name}}</option>
+                                 @endforeach
 
 
                                    </select>
