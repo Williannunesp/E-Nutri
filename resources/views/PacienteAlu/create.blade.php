@@ -108,7 +108,7 @@ Cadastro de Pacientes
                             <div class="row mb-4 mt-4">
                                 <div class="col-md-3 ">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="telres" name="telres" autocomplete="telres" type="number" value="{{$agenda->paciente->telres}}" required placeholder="Enter your first name" />
+                                        <input class="form-control" id="telres" name="telres" autocomplete="telres" type="number" value="{{$agenda->paciente->telres}}"  placeholder="Enter your first name" />
                                         <label for="telres">Telefone Residencial: </label>
                                     </div>
                                 </div>
