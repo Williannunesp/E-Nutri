@@ -6,6 +6,7 @@ use App\Models\Agendamentopc;
 use App\Models\Paciente;
 use App\Models\Retorno;
 use App\Models\User;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -104,4 +105,60 @@ class ProntuarioController extends Controller
     {
         //
     }
+
+    public function openpdffichapc(String $id){
+        $agenda = Agendamentopc::find($id);
+
+        $pdfPath = storage_path('/app/public/' . $agenda->fichapc);
+        return response()->file($pdfPath);
+    }
+
+    public function openpdfavpc(String $id){
+        $agenda = Agendamentopc::find($id);
+
+        $pdfPath = storage_path('/app/public/' . $agenda->antropometrica);
+        return response()->file($pdfPath);
+    }
+
+    public function openpdfdietapc(String $id){
+        $agenda = Agendamentopc::find($id);
+
+        if($agenda->dieta == 0){
+            return redirect('/prontuario/showp/' . $agenda->paciente_id)->with('erro', 'Este agendamento não possui dieta!');
+       }else{
+        $pdfPath = storage_path('/app/public/' . $agenda->dieta);
+        return response()->file($pdfPath);
+       }
+    }
+
+    public function openpdfavret(String $id){
+        $agenda = Retorno::find($id);
+
+        $pdfPath = storage_path('/app/public/' . $agenda->antropometrica);
+        return response()->file($pdfPath);
+    }
+
+    public function openpdfficharet(String $id){
+        $agenda = Retorno::find($id);
+
+        $pdfPath = storage_path('/app/public/' . $agenda->ficharet);
+        return response()->file($pdfPath);
+    }
+
+    public function openpdfdietaret(String $id){
+        $agenda = Retorno::find($id);
+
+        if($agenda->dieta == 0){
+             return redirect('/prontuario/show/' . $agenda->paciente_id)->with('erro', 'Este agendamento não possui dieta!');
+        }else{
+        $pdfPath = storage_path('/app/public/' . $agenda->dieta);
+        return response()->file($pdfPath);
+        }
+    }
 }
+
+
+
+
+
+

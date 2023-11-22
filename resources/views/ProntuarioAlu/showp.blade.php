@@ -53,7 +53,7 @@ Prontuário Primeira Consulta
 
                 <td>{{ $pcs->name }}</td>
                 <td>{{ \Carbon\Carbon::parse($pcs->data)->format('d/m/Y')}}</td>
-                <td><a href="{{route('showpront', ['id' => $pcs->id])}}">
+                <td><a href="{{route('openpdffichapc', ['id'=> $pcs->id])}}">
                     <button class="btn btn-primary" style="display: flex" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
@@ -61,15 +61,22 @@ Prontuário Primeira Consulta
                           </svg>
                         </button></a>
                 </td>
-                <td><a href="{{route('showpront', ['id' => $pcs->id])}}">
+                <td><a href="{{route('openpdfavpc', ['id' => $pcs->id])}}">
                     <button class="btn btn-primary" style="display: flex" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                             <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                           </svg>
                         </button></a>
+
+                        :
+                @php
+                    $se = $pcs->dieta != 0;
+                    $tag = $se ? 'target="_blank"': '';
+                @endphp
+
                 </td>
-                <td><a href="{{route('showpront', ['id' => $pcs->id])}}">
+                <td><a href="{{route('openpdfdietapc', ['id' => $pcs->id])}}" {{$tag}}>
                     <button class="btn btn-primary" style="display: flex" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>

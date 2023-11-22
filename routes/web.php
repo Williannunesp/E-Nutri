@@ -76,3 +76,10 @@ Route::post('/pc/{id}', [PrimeiraconsultaController::class, 'store'])->name('cri
 Route::get('/prontuario', [ProntuarioController::class, 'index'])->name('iniciopront');
 Route::get('/prontuario/show/{id}', [ProntuarioController::class, 'show'])->name('showpront');
 Route::get('/prontuario/showp/{id}', [ProntuarioController::class, 'edit'])->name('showprontpc');
+Route::get('/prontuario/open/fichapc/{id}', [ProntuarioController::class, 'openpdffichapc'])->name('openpdffichapc');
+Route::get('/prontuario/open/avpc/{id}', [ProntuarioController::class, 'openpdfavpc'])->name('openpdfavpc');
+Route::get('/prontuario/open/dietapc/{id}', [ProntuarioController::class, 'openpdfdietapc'])->name('openpdfdietapc');
+Route::get('/prontuario/open/avret/{id}', [ProntuarioController::class, 'openpdfavret'])->name('openpdfavret');
+Route::get('/prontuario/open/ficharet/{id}', [ProntuarioController::class, 'openpdfficharet'])->name('openpdfficharet');
+Route::get('/prontuario/open/dietaret/{id}', [ProntuarioController::class, 'openpdfdietaret'])->name('openpdfdietaret');
+

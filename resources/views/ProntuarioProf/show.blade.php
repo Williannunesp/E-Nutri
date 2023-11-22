@@ -62,7 +62,7 @@ Prontuário Retornos
 
                 <td>{{ $retornos->name }}</td>
                 <td>{{ \Carbon\Carbon::parse($retornos->data)->format('d/m/Y')}}</td>
-                <td><a href="{{route('showpront', ['id' => $retornos->id])}}">
+                <td><a href="{{route('openpdfficharet', ['id' => $retornos->id])}}" target="_blank">
                     <button class="btn btn-primary" style="display: flex" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
@@ -70,7 +70,7 @@ Prontuário Retornos
                           </svg>
                         </button></a>
                 </td>
-                <td><a href="{{route('showpront', ['id' => $retornos->id])}}">
+                <td><a href="{{route('openpdfavret', ['id' => $retornos->id])}}" target="_blank">
                     <button class="btn btn-primary" style="display: flex" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
@@ -78,7 +78,14 @@ Prontuário Retornos
                           </svg>
                         </button></a>
                 </td>
-                <td><a href="{{route('showpront', ['id' => $retornos->id])}}">
+
+                :
+                @php
+                    $se = $retornos->dieta != 0;
+                    $tag = $se ? 'target="_blank"': '';
+                @endphp
+
+                <td><a href="{{route('openpdfdietaret', ['id' => $retornos->id])}}" {{$tag}} >
                     <button class="btn btn-primary" style="display: flex" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
