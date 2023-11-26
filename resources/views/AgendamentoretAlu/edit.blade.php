@@ -35,7 +35,7 @@ Alterar Dados de Agendamento Retorno
                         <div class="row mb-4">
                             <div class="col-md-4">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" id="name" autocomplete="name" name="name" type="text" value="{{$agenda->name}}" disabled required placeholder="Enter your first name" />
+                                    <input class="form-control" id="name" autocomplete="name" name="name" type="text" disabled value="{{$agenda->name}}" disabled required placeholder="Enter your first name" />
                                     <label for="name">Nome do Paciente: <b style="color: red">*</b></label>
                                 </div>
                             </div>

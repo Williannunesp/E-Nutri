@@ -35,13 +35,13 @@ Se Necessário Atualize os Dados do Paciente
                         <div class="row mb-4">
                             <div class="col-md-4">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" id="name" autocomplete="name" name="name" type="text" value="{{$agenda->paciente->name}}" required placeholder="Enter your first name" />
+                                    <input class="form-control" id="name" disabled autocomplete="name" name="name" type="text" value="{{$agenda->paciente->name}}" required placeholder="Enter your first name" />
                                     <label for="name">Nome do Paciente: <b style="color: red">*</b></label>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" id="cpf" autocomplete="cpf" name="cpf" type="number" value="{{$agenda->paciente->cpf}}" required placeholder="Enter your first name" />
+                                    <input class="form-control" id="cpf" disabled autocomplete="cpf" name="cpf" type="number" value="{{$agenda->paciente->cpf}}" required placeholder="Enter your first name" />
                                     <label for="cpf">CPF: <b style="color: red">*</b></label>
                                 </div>
                             </div>
