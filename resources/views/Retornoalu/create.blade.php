@@ -36,15 +36,15 @@ Agendar Primeira Consulta
                 @csrf
                     <div class="container">
                         <div class="row mb-4">
-                            <div class="col-md-3 ">
+                            {{-- <div class="col-md-3 ">
                                 <label class="" for="">Descrição Ficha Retorno: </label>
-                                <textarea name="descpc" id="descpc" cols="100" rows="4"></textarea>
-                        </div>
+                                <textarea name="descret" id="descret" cols="100" rows="4"></textarea>
+                        </div> --}}
                         <div class="mt-3">
-                        <label for="fichapc">● Anexar ficha de Retorno em formato pdf (arquivo único) <b style="color: red">*</b> </label>
+                        <label for="ficharet">● Anexar ficha de Retorno em formato pdf (arquivo único) <b style="color: red">*</b> </label>
                     </div>
                         <div class="mt-1">
-                                <input class="form-control-file" id="fichapc" autocomplete="fichapc" name="fichapc" type="file" required placeholder="Enter your first name" />
+                                <input class="form-control-file" id="ficharet" autocomplete="ficharet" name="ficharet" type="file" required placeholder="Enter your first name" />
                         </div>
                             <div class="col-md-4 mt-5">
                                     <label class="" for="">Descrição Ficha de Avaliação Antropométrica: </label>
@@ -58,7 +58,7 @@ Agendar Primeira Consulta
                             </div>
                             <div class="col-md-3 mt-5">
 
-                                <label class="" for="">Descrição Deita: </label>
+                                <label class="" for="">Descrição Dieta: </label>
                                 <textarea name="descdie" id="descdie" cols="100" rows="4"></textarea>
 
                         </div>

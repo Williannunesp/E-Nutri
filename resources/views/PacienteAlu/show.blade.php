@@ -67,7 +67,7 @@ Ver Dados Paciente
                                  @foreach ($sexo as $sexos)
                                  :
                                  @php
-                                 $seEh = $agenda->paciente->sexo_id == $sexos->id;
+                                 $seEh = $dadospaci->sexo_id == $sexos->id;
                                  $selecao = $seEh ? "selected = 'selected'" : '';
 
                                  @endphp

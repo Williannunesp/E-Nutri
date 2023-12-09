@@ -58,7 +58,7 @@ Agendar Primeira Consulta
                             </div>
                             <div class="col-md-3 mt-5">
 
-                                <label class="" for="">Descrição Deita: </label>
+                                <label class="" for="">Descrição Dieta: </label>
                                 <textarea name="descdie" id="descdie" cols="100" rows="4"></textarea>
 
                         </div>

@@ -55,7 +55,7 @@ class ProntuarioController extends Controller
     public function show(string $id)
     {
 
-        $retorno = Retorno::where("paciente_id", $id )->Where("status_id", 2)->get();
+        $retorno = Retorno::where("paciente_id", $id )->Where("status_id", 2)->orderBy('data')->get();
         $user = Auth::user()->name;
         $paciente = Paciente::query()->orderBy('name')->get();
         $acesso = User::where("name", $user)->get("acesso_id");

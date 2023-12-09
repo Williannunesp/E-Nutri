@@ -281,7 +281,7 @@ class RetornoController extends Controller
         }else{
             $cdie = 0;
         }
-        // dd($cpc);
+         
 
         $agenda->update([
             'descriçãoficharet' => $request->descret,

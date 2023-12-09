@@ -44,7 +44,7 @@ Cadastro de Pacientes
                             </div>
                             <div class="col-md-3">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" id="cpf" autocomplete="cpf" name="cpf" type="number"  required placeholder="Enter your first name" />
+                                    <input class="form-control" id="cpf" autocomplete="cpf" name="cpf" type="number"  minlength="11" maxlength="11"  required placeholder="Enter your first name" />
                                     <label for="cpf">CPF: <b style="color: red">*</b></label>
                                 </div>
                             </div>
