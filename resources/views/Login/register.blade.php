@@ -57,13 +57,13 @@ Cadastro de Usuários
                         <div class="row mb-4">
                                 <div class="col-md-4">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="nameu" autocomplete="nameu" name="nameu" type="text" required placeholder="Enter your first name" />
+                                        <input class="form-control" id="nameu" autocomplete="" name="nameu" type="text" required placeholder="Enter your first name" />
                                         <label for="nameu">Nome do Usuário: <b style="color: red">*</b></label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" id="password" autocomplete="password" name="password" required minlength="8" type="password" required placeholder="Enter your first name" />
+                                        <input class="form-control" id="password" autocomplete="" name="password" required minlength="8" type="password" required placeholder="Enter your first name" />
                                         <label for="password">Senha: <b style="color: red">*</b></label>
                                     </div>
                                 </div>
