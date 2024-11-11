@@ -1,3 +1,5 @@
+CREATE DATABASE enutri
+
 INSERT INTO acessos (name) VALUES ("PROFESSOR"), ("ALUNO");
 
 INSERT INTO status (name) VALUES ("ATIVO"), ("INATIVO");

@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/reg', [AuthController::class, 'logadm']);
+//Route::get('/reg', [AuthController::class, 'logadm']);
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::get('/login', [AuthController::class, 'tlogin'])->name('tlogin');
 
